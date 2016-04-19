@@ -22,9 +22,9 @@ void Client::setDateOfBirth(std::string d)
 {
 	dateOfBirth=d;
 }
-void Client::setMyAccounts(Account a)
+void Client::addAccount(double accountNumber)
 {
-	myAccounts.push_front(a);
+	myAccounts.push_back(accountNumber);
 }
 std::string Client::getName()
 {
@@ -39,8 +39,7 @@ std::string Client::getDateOfBirth()
 	return dateOfBirth;
 }
 
-Account* Client::getMyAccounts()
+std::vector<double> & Client::getMyAccounts()
 {
-	std::list<Account>::iterator i=myAccounts.begin();
-	return &*i;
+	return myAccounts;
 }

@@ -1,13 +1,16 @@
+#ifndef __CLIENT__
+#define __CLIENT__
+
 #include <string>
-#include <list>
-#include "Account.h"
+#include <vector>
+
 class Client
 {
 private:
 	std::string name;
 	std::string address;
 	std::string dateOfBirth;
-	std::list<Account> myAccounts;
+	std::vector<double> myAccounts;
 
 public:
 	Client();
@@ -15,11 +18,12 @@ public:
 	void setName(std::string n);
 	void setAdress(std::string a);
 	void setDateOfBirth(std::string d);
-	void setMyAccounts(Account a);
+	void addAccount(double accountNumber);
 	std::string getName();
 	std::string getAddress();
 	std::string getDateOfBirth();
-	Account* getMyAccounts();
+	std::vector<double> & getMyAccounts();
 
 };
 
+#endif // __CLIENT__

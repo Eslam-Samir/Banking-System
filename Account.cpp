@@ -1,15 +1,11 @@
 #include "Account.h"
-double Account:: numberOfAccounts=0;
-Account::Account()
-{}
-	
-Account::Account(double acntnumber,double bal,std::string pass)
+
+Account::Account(double acntnumber, double bal, std::string pass, Client & owner)
 {
-	numberOfAccounts++;
 	accountNumber=acntnumber;
 	balance=bal;
 	password=pass;
-	accountNumber=numberOfAccounts;
+	this->owner = owner;
 }
 void Account::setBalance(double bal)
 {
@@ -18,6 +14,10 @@ void Account::setBalance(double bal)
 void Account::setPassword(std::string pass)
 {
 	password=pass;
+}
+void Account::setOwner(Client owner)
+{
+	this->owner = owner;
 }
 double Account::getAccountNumber()
 {
@@ -30,4 +30,8 @@ double Account::getBalance()
 std::string Account::getPassword()
 {
 	return password;
+}
+Client & Account::getOwner()
+{
+	return owner;
 }
