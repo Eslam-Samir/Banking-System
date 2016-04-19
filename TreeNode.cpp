@@ -1,39 +1,38 @@
 #include "TreeNode.h"
 
-template<class Type>
-TreeNode<Type>::TreeNode(Type x, TreeNode<Type>* left, TreeNode<Type>* right)
+TreeNode::TreeNode(Account* x, TreeNode* left, TreeNode* right)
 {
-	data=x; 
-	this->left=left; 
-	this->right=right; 
+	account = x; 
+	this->left = left; 
+	this->right = right; 
 }
-template<class Type>
-void TreeNode<Type>::setData(Type x) 
+
+void TreeNode::setData(Account* x) 
 {
-	data = x;
+	account = x;
 }
-template<class Type>
-void TreeNode<Type>::setLeft(TreeNode<Type> *ptr) 
+
+void TreeNode::setLeft(TreeNode* ptr) 
 {
 	left = ptr;
 }
-template<class Type>
-void TreeNode<Type>::setRight(TreeNode<Type> *ptr) 
+
+void TreeNode::setRight(TreeNode* ptr) 
 {
 	right = ptr;
 }
-template<class Type>
-Type TreeNode<Type>::getData() 
+
+Account* TreeNode::getData() 
 {
-	return data;
+	return account;
 }
-template<class Type>
-TreeNode<Type>* TreeNode<Type>::getLeft() 
+
+TreeNode* TreeNode::getLeft() 
 {
 	return left;
 }
-template<class Type>
-TreeNode<Type>* TreeNode<Type>::getRight() 
+
+TreeNode* TreeNode::getRight() 
 {
 	return right;
 }

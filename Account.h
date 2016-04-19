@@ -11,21 +11,21 @@ private:
 	double balance;
 	std::string password;
 	double interestRate;
-	Client owner;
+	Client* owner;
 	             ///   Transaction history    \\\\
 	//a list that contains the history of transactions made by the clinet
 	//the transaction class is not finished yet
 	//list<trannsaction> transactionHistory;
 public:
 	Account();
-	Account(double accountNum, double bal, std::string pass, Client & owner);
+	Account(double accountNum, double bal, std::string pass, Client* owner);
 	void setBalance(double bal);
 	void setPassword(std::string pass);
-	void setOwner(Client owner);
+	void setOwner(Client* owner);
 	double getAccountNumber();
 	double getBalance();
 	std::string getPassword();
-	Client & getOwner();
+	Client* getOwner();
 };
 
 #endif // __ACCOUNT__

@@ -1,6 +1,6 @@
 #include "Account.h"
 
-Account::Account(double accountNum, double bal, std::string pass, Client & owner)
+Account::Account(double accountNum, double bal, std::string pass, Client* owner)
 {
 	accountNumber = accountNum;
 	balance=bal;
@@ -15,7 +15,7 @@ void Account::setPassword(std::string pass)
 {
 	password=pass;
 }
-void Account::setOwner(Client owner)
+void Account::setOwner(Client* owner)
 {
 	this->owner = owner;
 }
@@ -31,7 +31,7 @@ std::string Account::getPassword()
 {
 	return password;
 }
-Client & Account::getOwner()
+Client* Account::getOwner()
 {
 	return owner;
 }

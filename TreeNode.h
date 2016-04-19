@@ -1,21 +1,23 @@
 #ifndef __TREENODE__
 #define __TREENODE__
 
-template<class Type>
+#include "Account.h"
+
 class TreeNode 
 {
 private:
-	Type data; // different data type for other apps
-	TreeNode<Type> *left; // a pointer to left child
-	TreeNode<Type> *right; // a pointer to right child
+	Account* account; // different data type for other apps
+	TreeNode* left; // a pointer to left child
+	TreeNode* right; // a pointer to right child
 public:
-	TreeNode(Type x = 0, TreeNode<Type>* left = nullptr, TreeNode<Type>* right = nullptr);
-	void setData(Type x);
-	void setLeft(TreeNode<Type> *ptr);
-	void setRight(TreeNode<Type> *ptr);
-	Type getData();
-	TreeNode<Type> * getLeft();
-	TreeNode<Type> * getRight();
+	TreeNode(Account* x = nullptr, TreeNode* left = nullptr, TreeNode* right = nullptr);
+	void setData(Account* x);
+	void setLeft(TreeNode *ptr);
+	void setRight(TreeNode *ptr);
+	Account* getData();
+	TreeNode* getLeft();
+	TreeNode* getRight();
 };
+
 
 #endif // __TREENODE__
