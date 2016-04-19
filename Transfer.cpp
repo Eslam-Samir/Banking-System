@@ -13,10 +13,19 @@ void Transfer:: setAmount(double x)
 	amount = x;
 }
 
-void Transfer:: modify(double getAmount())
+void Transfer::transferAmount()
 {
-	// balance = balance - amount;
+	/*
+	if (balance >= amount)
+		balance = balance - amount;
+		otherbalance = otherbalance + amount;
+	else
+		cout<<"No enough money"
+	*/
+	
+}
 
-	//other client balance = balance+amount;
-
+void Transfer:: modify()
+{
+	transferAmount();
 }

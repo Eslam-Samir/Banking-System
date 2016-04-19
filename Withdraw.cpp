@@ -12,9 +12,19 @@ void Withdraw:: setAmount(double x)
 {
 	amount = x;
 }
-
-void Withdraw:: modify(double getAmount())
+void Withdraw::withdrawAmount()
 {
-	// balance = balance - amount;
+	/*
+	if(balance>=amount)
+		balance = balance-amount;
+		cout<<"balance;
+	else 
+		cout<< "No enough money"
+	*/
+}
+
+void Withdraw:: modify()
+{
+	withdrawAmount();
 }
 

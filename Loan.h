@@ -1,15 +1,12 @@
 #pragma once
 #include <iostream>
-#include <queue>
-#include <string>
-#include <ctime>
-#include <algorithm>
 #include "Transaction.h"
 using namespace std;
 
-class Loan :Transaction {
+class Loan :public Transaction {
 private:
 	double amount;
+	void loanAmount(bool t);
 
 public:
 
@@ -20,6 +17,6 @@ public:
 	void setAmount(double x);
 	
 
-	void modify(double getAmount());
+	void modify();
 	
 }; 

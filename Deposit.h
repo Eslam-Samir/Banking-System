@@ -1,16 +1,13 @@
 #pragma once
 #include <iostream>
-#include <queue>
-#include <string>
-#include <ctime>
-#include <algorithm>
 #include "Transaction.h"
 using namespace std;
 
-class Deposit :Transaction {
+class Deposit :public Transaction {
 
 private:
 	double amount;
+	void DepositAmount();
 
 public:
 
@@ -20,6 +17,6 @@ public:
  
 	void setAmount(double x);
 
-	void modify(double getAmount());
+	void modify();
 	
 }; 

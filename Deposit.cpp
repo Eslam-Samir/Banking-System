@@ -1,5 +1,9 @@
 #include "Deposit.h"
 
+void Deposit::DepositAmount()
+{
+	//balance = balance+amount;
+}
 
 Deposit::Deposit(double x)
 {
@@ -15,7 +19,12 @@ void Deposit::setAmount(double x)
 	amount = x;
 }
 
-void Deposit::modify(double getAmount())
+void Deposit::modify()
 {
-	// balance = balance + amount;
+	DepositAmount();
 }
+
+
+		
+	
+
