@@ -1,8 +1,8 @@
 #include "Account.h"
 
-Account::Account(double bal, std::string pass, Client & owner)
+Account::Account(double accountNum, double bal, std::string pass, Client & owner)
 {
-	accountNumber = AccountManager::getAccountManager()->getNumberOfAccounts();
+	accountNumber = accountNum;
 	balance=bal;
 	password=pass;
 	this->owner = owner;

@@ -15,8 +15,8 @@ private:
 public:
 	static AccountManager * getAccountManager();
 	double getNumberOfAccounts();
-	void addAccount(Account user);
-	void removeAccount(Account user);
+	void addAccount(Account & user);
+	void removeAccount(Account & user);
 	void searchAccount(double account_no);
 	void validateAccount(double account_no, std::string pass);
 

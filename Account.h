@@ -4,7 +4,6 @@
 #include <list>
 #include <string>
 #include "Client.h"
-#include "AccountManager.h"
 class Account
 {
 private:
@@ -18,7 +17,8 @@ private:
 	//the transaction class is not finished yet
 	//list<trannsaction> transactionHistory;
 public:
-	Account(double bal, std::string pass, Client & owner);
+	Account();
+	Account(double accountNum, double bal, std::string pass, Client & owner);
 	void setBalance(double bal);
 	void setPassword(std::string pass);
 	void setOwner(Client owner);

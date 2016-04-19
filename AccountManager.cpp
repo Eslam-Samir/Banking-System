@@ -5,7 +5,7 @@ AccountManager::AccountManager()
 	NumberOfAccounts = 0;
 }
 
-AccountManager * AccountManager::getAccountManager()
+inline AccountManager * AccountManager::getAccountManager()
 {
 	if(accountManagerPtr == nullptr)
 	{
