@@ -25,7 +25,7 @@ public:
 	bool validateAccount(double account_no, std::string pass);
 
 	bool saveAccounts(std::string filename);
-	bool loadAccount(std::string filename);
+	bool loadAccounts(std::string filename);
 };
 
 AccountManager::AccountManager()
@@ -89,7 +89,6 @@ double AccountManager::getNumberOfAccounts()
 {
 	return NumberOfAccounts;
 }
-
 bool AccountManager::saveAccounts(std::string filename)
 {
 	if(accounts->isEmpty())
@@ -100,9 +99,23 @@ bool AccountManager::saveAccounts(std::string filename)
 		return false;
 
 	outFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-	outFile << accounts->createXml();
+	std::stringstream ss;
+	ss << getNumberOfAccounts(); // convert to string
+	outFile << "<NumberOfAccounts>" + ss.str() + "</NumberOfAccounts>\n";
+	ss.str(std::string()); // clear string stream
+	accounts->createXml(outFile);
 
 	return true;
+}
+
+bool AccountManager::loadAccounts(std::string filename)
+{
+	std::ifstream inFile(filename);
+	if(!inFile.is_open())
+		return false;
+
+	NumberOfAccounts = accounts->loadXml(inFile);
+
 }
 
 #endif // __ACCOUNTMANAGER__

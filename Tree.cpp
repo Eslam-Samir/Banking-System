@@ -169,53 +169,170 @@ TreeNode* Tree::remove(Account* x)
 	}
 }
 
-std::string Tree::XmlNodeString(TreeNode* n)
+// Recursive function
+void Tree::XmlNodeString(TreeNode* n, std::ofstream & outFile)
 {
-	std::string xmlStr = "";
 	if(n == nullptr)
-		return xmlStr;
+		return;
 
 	std::stringstream ss;
 	Account * account = n->getData();
-	xmlStr += "<Account>\n";
+	outFile << "<Account>\n";
 		ss << account->getAccountNumber(); // convert to string
-		xmlStr += "<AccountNumber>" + ss.str() + "</AccountNumber>\n";
+		outFile << "<AccountNumber>" + ss.str() + "</AccountNumber>\n";
 		ss.str(std::string()); // clear string stream
 
 		ss << account->getBalance(); // convert to string
-		xmlStr += "<Balance>" + ss.str() + "</Balance>\n";
+		outFile << "<Balance>" + ss.str() + "</Balance>\n";
 		ss.str(std::string()); // clear string stream
 
-		xmlStr += "<Password>" + account->getPassword() + "</Password>\n";
+		outFile << "<Password>" + account->getPassword() + "</Password>\n";
 		//xmlStr += "<InterestRate>" + std::to_string(n->getData()->getInterestRate()) + "</InterestRate>"; // *********** TODO
 		Client * client = account->getOwner();
-		xmlStr += "<Client>\n";
-			xmlStr += "<Name>" + client->getName() + "</Name>\n";
-			xmlStr += "<Address>" + client->getAddress() + "</Address>\n";
-			xmlStr += "<DateOfBirth>" + client->getDateOfBirth() + "</DateOfBirth>\n";
-			xmlStr += "<ClientAccounts>\n";
+		outFile << "<Client>\n";
+			outFile << "<Name>" + client->getName() + "</Name>\n";
+			outFile << "<Address>" + client->getAddress() + "</Address>\n";
+			outFile << "<DateOfBirth>" + client->getDateOfBirth() + "</DateOfBirth>\n";
+			outFile << "<ClientAccounts>\n";
 				std::vector<double> clientAccounts = client->getMyAccounts();
-				for(int i = 0, n = clientAccounts.size(); i < n; i++)
+				for(int i = 0, size = clientAccounts.size(); i < size; i++)
 				{
 					ss << clientAccounts[i]; // convert to string
-					xmlStr += "<ClientAccount>" + ss.str() + "</ClientAccount>\n";
+					outFile << "<ClientAccount>" + ss.str() + "</ClientAccount>\n";
 					ss.str(std::string()); // clear string stream
 				}
-			xmlStr += "</ClientAccounts>\n";
-		xmlStr += "</Client>\n";
+			outFile << "</ClientAccounts>\n";
+		outFile << "</Client>\n";
 
 		if(!n->isLeaf())
 		{
-			xmlStr += XmlNodeString(n->getLeft());
-			xmlStr += XmlNodeString(n->getRight());
+			XmlNodeString(n->getLeft(), outFile);
+			XmlNodeString(n->getRight(), outFile);
 		}
 
-	xmlStr += "</Account>\n";
-	return xmlStr;
+	outFile << "</Account>\n";
 }
 
-std::string Tree::createXml()
+void Tree::XmlParseNode(std::ifstream & inFile, std::stack<std::string> & s)
 {
-	std::string xmlStr = XmlNodeString(rootPtr);
-	return xmlStr;
+	
+	std::string line, accountNum, Balance, Password, Name, Address, DateOfBirth;
+	std::vector<double> clientAccounts;
+
+	if(!std::getline(inFile, line))
+		return;
+	accountNum = XmlParseTag(line, "<AccountNumber>", s);
+	if(!std::getline(inFile, line))
+		return;
+	Balance = XmlParseTag(line, "<Balance>", s);
+	if(!std::getline(inFile, line))
+		return;
+	Password = XmlParseTag(line, "<Password>", s);
+
+	if(!std::getline(inFile, line))
+		return;
+	s.push(line); // <Client>
+
+	if(!std::getline(inFile, line))
+		return;
+	Name = XmlParseTag(line, "<Name>", s);
+	if(!std::getline(inFile, line))
+		return;
+	Address = XmlParseTag(line, "<Address>", s);
+	if(!std::getline(inFile, line))
+		return;
+	DateOfBirth = XmlParseTag(line, "<DateOfBirth>", s);
+
+	if(!std::getline(inFile, line))
+		return;
+	s.push(line); // <ClientAccounts>
+
+	if(!std::getline(inFile, line))
+		return;
+	while(line.substr(2) != s.top().substr(1)) // while line != </ClientAccounts>
+	{
+		clientAccounts.push_back(stod(XmlParseTag(line, "<ClientAccount>", s)));
+		if(!std::getline(inFile, line))
+			return;
+	}
+	s.pop(); // pop </ClientAccounts>
+
+	if(!std::getline(inFile, line) || line.substr(2) != s.top().substr(1))
+		return;
+
+	s.pop(); // pop </Client>
+
+	Client* owner;
+	bool clientExist = false;
+	Account* acc;
+	for(int i = 0, size = clientAccounts.size(); i < size; i++)
+	{
+		if((acc = search(clientAccounts[i])) != nullptr)
+		{
+			clientExist = true;
+			break;
+		}
+	}
+	if(clientExist)
+		owner = acc->getOwner();
+	else
+		owner = new Client(Name, Address, DateOfBirth);
+
+	acc = new Account(stod(accountNum), stod(Balance), Password, owner);
+	insert(acc);
+
+	while(line != "<Account>")
+	{
+		if(!std::getline(inFile, line))
+			return;
+		if(line.substr(2) == s.top().substr(1))
+			s.pop();
+		else if(line == "<Account>")
+			s.push("<Account>");
+	}
+	if(s.empty())
+		return;
+
+	XmlParseNode(inFile, s);
+
+}
+
+std::string Tree::XmlParseTag(std::string & line, std::string TagName, std::stack<std::string> & s)
+{
+	std::string temp;
+	s.push(TagName);
+	line = line.substr(TagName.length(), line.length()-TagName.length()); //Ex.	number</AccountNumber>
+	temp = line.substr(0, line.find("</"));
+	line = line.substr(temp.length(), line.length()-temp.length());
+
+	if(line.substr(2) != s.top().substr(1))
+		return "";
+
+	s.pop();
+	return temp;
+}
+
+void Tree::createXml(std::ofstream & outFile)
+{
+	if(rootPtr == nullptr)
+		return;
+	XmlNodeString(rootPtr, outFile);
+}
+
+double Tree::loadXml(std::ifstream & inFile)
+{
+	std::stack<std::string> s;
+	std::string line;
+	std::getline(inFile, line);
+	double numberOfAccounts = 0;
+	if(!std::getline(inFile, line))
+		return numberOfAccounts;
+
+	numberOfAccounts = stod(XmlParseTag(line, "<NumberOfAccounts>", s));
+
+	if(!std::getline(inFile, line))
+		return numberOfAccounts;
+	s.push(line); // <Account>
+	XmlParseNode(inFile, s);
+	return numberOfAccounts;
 }

@@ -21,7 +21,7 @@ void main()
 	cout << acc1 << endl;
 	cout << acc2 << endl;
 	cout << acc3 << endl;
-	/*
+
 	cout << ptr->searchAccount(acc1)->getBalance() << endl;
 	cout << ptr->searchAccount(acc2)->getBalance() << endl;
 	cout << ptr->searchAccount(acc3)->getBalance() << endl;
@@ -32,9 +32,9 @@ void main()
 	ptr->removeAccount(ptr->searchAccount(acc1));
 	ptr->removeAccount(ptr->searchAccount(acc2));
 	ptr->removeAccount(ptr->searchAccount(acc3));
-	*/
+	
 
-	cout << ptr->saveAccounts("hello.xml");
-
+	//cout << ptr->saveAccounts("hello.xml");
+	//ptr->loadAccounts("hello.xml");
 	system("pause");
 }

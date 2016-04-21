@@ -1,16 +1,22 @@
 #ifndef __TREE__
 #define __TREE__
 
-#include "TreeNode.h"
+#include <iostream>
 #include <string>
 #include <vector>
+#include <stack>
 #include <sstream>
+#include <fstream>
+
+#include "TreeNode.h"
 
 class Tree
 {
 private:
 	TreeNode* rootPtr;
-	std::string XmlNodeString(TreeNode* n);
+	void XmlNodeString(TreeNode* n, std::ofstream & outFile);
+	void XmlParseNode(std::ifstream & inFile, std::stack<std::string> & s);
+	std::string XmlParseTag(std::string & line, std::string TagName, std::stack<std::string> & s);
 
 public:
 	Tree(TreeNode* rootPtr = nullptr);
@@ -21,7 +27,8 @@ public:
 	bool insert(Account* x);
 	TreeNode* remove(Account* x);
 
-	std::string createXml();
+	void createXml(std::ofstream & outFile);
+	double loadXml(std::ifstream & inFile);
 };
 
 
