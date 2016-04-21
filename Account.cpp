@@ -6,6 +6,7 @@ Account::Account(double accountNum, double bal, std::string pass, Client* owner)
 	balance=bal;
 	password=pass;
 	this->owner = owner;
+	owner->getMyAccounts().push_back(accountNum);
 }
 void Account::setBalance(double bal)
 {

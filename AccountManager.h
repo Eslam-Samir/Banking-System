@@ -1,11 +1,12 @@
 #ifndef __ACCOUNTMANAGER__
 #define __ACCOUNTMANAGER__
 
+#include <fstream>
 #include <string>
 #include <time.h>
 #include "Account.h"
 #include "Tree.h"
-#include <stdlib.h>
+
 class AccountManager
 {
 private:
@@ -23,8 +24,8 @@ public:
 	Account* searchAccount(double account_no);
 	bool validateAccount(double account_no, std::string pass);
 
-	void saveAccounts();
-	void loadAccount();
+	bool saveAccounts(std::string filename);
+	bool loadAccount(std::string filename);
 };
 
 AccountManager::AccountManager()
@@ -47,7 +48,7 @@ double AccountManager::addAccount(double bal, std::string pass, Client* owner)
 {
 	
 	double accountNum = 0;
-	for (int i = 0; i < 15; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		accountNum += rand() % 10;
 		accountNum *= 10;
@@ -87,6 +88,21 @@ bool AccountManager::validateAccount(double account_no, std::string pass)
 double AccountManager::getNumberOfAccounts()
 {
 	return NumberOfAccounts;
+}
+
+bool AccountManager::saveAccounts(std::string filename)
+{
+	if(accounts->isEmpty())
+		return false;
+
+	std::ofstream outFile(filename);
+	if(!outFile.is_open())
+		return false;
+
+	outFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+	outFile << accounts->createXml();
+
+	return true;
 }
 
 #endif // __ACCOUNTMANAGER__

@@ -17,6 +17,8 @@ public:
 	Account* getData();
 	TreeNode* getLeft();
 	TreeNode* getRight();
+
+	bool isLeaf();
 };
 
 

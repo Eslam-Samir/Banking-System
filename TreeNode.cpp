@@ -36,3 +36,11 @@ TreeNode* TreeNode::getRight()
 {
 	return right;
 }
+
+bool TreeNode::isLeaf()
+{
+	if(getRight() == nullptr && getLeft() == nullptr)
+		return true;
+	else
+		return false;
+}

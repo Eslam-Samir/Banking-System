@@ -2,11 +2,15 @@
 #define __TREE__
 
 #include "TreeNode.h"
+#include <string>
+#include <vector>
+#include <sstream>
 
 class Tree
 {
 private:
 	TreeNode* rootPtr;
+	std::string XmlNodeString(TreeNode* n);
 
 public:
 	Tree(TreeNode* rootPtr = nullptr);
@@ -16,6 +20,8 @@ public:
 	Account* search(double x);
 	bool insert(Account* x);
 	TreeNode* remove(Account* x);
+
+	std::string createXml();
 };
 
 

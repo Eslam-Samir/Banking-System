@@ -168,3 +168,54 @@ TreeNode* Tree::remove(Account* x)
 		return returnNode;
 	}
 }
+
+std::string Tree::XmlNodeString(TreeNode* n)
+{
+	std::string xmlStr = "";
+	if(n == nullptr)
+		return xmlStr;
+
+	std::stringstream ss;
+	Account * account = n->getData();
+	xmlStr += "<Account>\n";
+		ss << account->getAccountNumber(); // convert to string
+		xmlStr += "<AccountNumber>" + ss.str() + "</AccountNumber>\n";
+		ss.str(std::string()); // clear string stream
+
+		ss << account->getBalance(); // convert to string
+		xmlStr += "<Balance>" + ss.str() + "</Balance>\n";
+		ss.str(std::string()); // clear string stream
+
+		xmlStr += "<Password>" + account->getPassword() + "</Password>\n";
+		//xmlStr += "<InterestRate>" + std::to_string(n->getData()->getInterestRate()) + "</InterestRate>"; // *********** TODO
+		Client * client = account->getOwner();
+		xmlStr += "<Client>\n";
+			xmlStr += "<Name>" + client->getName() + "</Name>\n";
+			xmlStr += "<Address>" + client->getAddress() + "</Address>\n";
+			xmlStr += "<DateOfBirth>" + client->getDateOfBirth() + "</DateOfBirth>\n";
+			xmlStr += "<ClientAccounts>\n";
+				std::vector<double> clientAccounts = client->getMyAccounts();
+				for(int i = 0, n = clientAccounts.size(); i < n; i++)
+				{
+					ss << clientAccounts[i]; // convert to string
+					xmlStr += "<ClientAccount>" + ss.str() + "</ClientAccount>\n";
+					ss.str(std::string()); // clear string stream
+				}
+			xmlStr += "</ClientAccounts>\n";
+		xmlStr += "</Client>\n";
+
+		if(!n->isLeaf())
+		{
+			xmlStr += XmlNodeString(n->getLeft());
+			xmlStr += XmlNodeString(n->getRight());
+		}
+
+	xmlStr += "</Account>\n";
+	return xmlStr;
+}
+
+std::string Tree::createXml()
+{
+	std::string xmlStr = XmlNodeString(rootPtr);
+	return xmlStr;
+}
