@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NumberOfAccounts>4</NumberOfAccounts>
+<Account>
+<AccountNumber>7160</AccountNumber>
+<Balance>200000</Balance>
+<Password>hi</Password>
+<Client>
+<Name>Eslam Samir</Name>
+<Address>fsdags</Address>
+<DateOfBirth>08/10/1994</DateOfBirth>
+<ClientAccounts>
+<ClientAccount>7160</ClientAccount>
+<ClientAccount>8180</ClientAccount>
+</ClientAccounts>
+</Client>
+<Account>
+<AccountNumber>3580</AccountNumber>
+<Balance>223</Balance>
+<Password>hii</Password>
+<Client>
+<Name>Manar Sherif</Name>
+<Address>fdhfdh</Address>
+<DateOfBirth>25553532</DateOfBirth>
+<ClientAccounts>
+<ClientAccount>3580</ClientAccount>
+</ClientAccounts>
+</Client>
+<Account>
+<AccountNumber>116</AccountNumber>
+<Balance>0.5</Balance>
+<Password>hiii</Password>
+<Client>
+<Name>Menna Tarek</Name>
+<Address>dfjjkfj</Address>
+<DateOfBirth>373635</DateOfBirth>
+<ClientAccounts>
+<ClientAccount>116</ClientAccount>
+</ClientAccounts>
+</Client>
+</Account>
+</Account>
+<Account>
+<AccountNumber>8180</AccountNumber>
+<Balance>223455</Balance>
+<Password>sfgasg</Password>
+<Client>
+<Name>Eslam Samir</Name>
+<Address>fsdags</Address>
+<DateOfBirth>08/10/1994</DateOfBirth>
+<ClientAccounts>
+<ClientAccount>7160</ClientAccount>
+<ClientAccount>8180</ClientAccount>
+</ClientAccounts>
+</Client>
+</Account>
+</Account>
