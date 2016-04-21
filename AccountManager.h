@@ -2,9 +2,10 @@
 #define __ACCOUNTMANAGER__
 
 #include <string>
+#include <time.h>
 #include "Account.h"
 #include "Tree.h"
-
+#include <stdlib.h>
 class AccountManager
 {
 private:
@@ -28,6 +29,7 @@ public:
 
 AccountManager::AccountManager()
 {
+	srand (time(NULL));
 	accounts = new Tree();
 	NumberOfAccounts = 0;
 }
@@ -43,10 +45,18 @@ inline AccountManager * AccountManager::getAccountManager()
 
 double AccountManager::addAccount(double bal, std::string pass, Client* owner)
 {
-	Account *tmp = new Account(NumberOfAccounts, bal, pass, owner);
+	
+	double accountNum = 0;
+	for (int i = 0; i < 15; i++)
+	{
+		accountNum += rand() % 10;
+		accountNum *= 10;
+	}
+	accountNum += rand() % 10;
+	Account *tmp = new Account(accountNum, bal, pass, owner);
 	accounts->insert(tmp);
 	NumberOfAccounts++;
-	return tmp->getAccountNumber();
+	return accountNum;
 }
 void AccountManager::removeAccount(Account* user)
 {
