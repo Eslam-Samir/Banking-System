@@ -60,8 +60,12 @@ double AccountManager::addAccount(double bal, std::string pass, Client* owner)
 }
 void AccountManager::removeAccount(Account* user)
 {
+	if(user == nullptr)
+		return;
+
+	user->getOwner()->removeAccount(user->getAccountNumber());
 	// delete client information from memory if he doesn't have other accounts
-	if(user->getOwner()->getMyAccounts().size() == 1)
+	if(user->getOwner()->getMyAccounts().size() == 0)
 	{
 		delete user->getOwner();
 	}

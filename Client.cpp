@@ -31,7 +31,18 @@ void Client::addAccount(double accountNumber)
 {
 	myAccounts.push_back(accountNumber);
 }
-
+void Client::removeAccount(double accountNumber)
+{
+	std::vector<double>::iterator it = myAccounts.begin();
+	for(; it < myAccounts.end(); it++)
+	{
+		if(*it == accountNumber)
+		{
+			myAccounts.erase(it); // remove account from client
+			break;
+		}
+	}
+}
 double Client::getClientID()
 {
 	return clientID;

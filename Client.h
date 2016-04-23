@@ -21,6 +21,7 @@ public:
 	void setAdress(std::string a);
 	void setDateOfBirth(std::string d);
 	void addAccount(double accountNumber);
+	void removeAccount(double accountNumber);
 	double getClientID();
 	std::string getName();
 	std::string getAddress();

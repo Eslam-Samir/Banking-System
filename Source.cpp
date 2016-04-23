@@ -41,5 +41,8 @@ void main()
 	
 	//cout << ptr->saveAccounts("hello.xml") << endl;
 	ptr->loadAccounts("hello.xml");
+	ptr->removeAccount(ptr->searchAccount(3156));
+	ptr->removeAccount(ptr->searchAccount(6635));
+	cout << ptr->searchAccount(6635) << endl;
 	system("pause");
 }
