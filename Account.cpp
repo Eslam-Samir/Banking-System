@@ -8,6 +8,7 @@ Account::Account(double accountNum, double bal, std::string pass, Client* owner)
 	this->owner = owner;
 	owner->getMyAccounts().push_back(accountNum);
 }
+
 void Account::setBalance(double bal)
 {
 	balance=bal;
@@ -19,6 +20,10 @@ void Account::setPassword(std::string pass)
 void Account::setOwner(Client* owner)
 {
 	this->owner = owner;
+}
+void Account::addTransactionToHistory(double transID)
+{
+	this->transactions.push_back(transID);
 }
 double Account::getAccountNumber()
 {
@@ -35,4 +40,8 @@ std::string Account::getPassword()
 Client* Account::getOwner()
 {
 	return owner;
+}
+std::vector<double> & Account::getTransactionHistory()
+{
+	return transactions;
 }

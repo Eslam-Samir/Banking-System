@@ -3,12 +3,17 @@
 Client::Client()
 {}
 
-Client::Client(std::string n,std::string a,std::string d)
+Client::Client(double id, std::string n,std::string a,std::string d)
 {
+	clientID=id;
 	name=n;
 	address=a;
 	dateOfBirth=d;
 }
+void Client::setClientID(double id){
+	clientID=id;
+}
+
 void Client::setName(std::string n){
 	name=n;
 }
@@ -25,6 +30,11 @@ void Client::setDateOfBirth(std::string d)
 void Client::addAccount(double accountNumber)
 {
 	myAccounts.push_back(accountNumber);
+}
+
+double Client::getClientID()
+{
+	return clientID;
 }
 std::string Client::getName()
 {

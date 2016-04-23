@@ -3,6 +3,7 @@
 
 #include <list>
 #include <string>
+#include <vector>
 #include "Client.h"
 class Account
 {
@@ -12,20 +13,19 @@ private:
 	std::string password;
 	double interestRate;
 	Client* owner;
-	             ///   Transaction history    \\\\
-	//a list that contains the history of transactions made by the clinet
-	//the transaction class is not finished yet
-	//list<trannsaction> transactionHistory;
+	std::vector<double> transactions;
+
 public:
-	Account();
 	Account(double accountNum, double bal, std::string pass, Client* owner);
 	void setBalance(double bal);
 	void setPassword(std::string pass);
 	void setOwner(Client* owner);
+	void addTransactionToHistory(double transID);
 	double getAccountNumber();
 	double getBalance();
 	std::string getPassword();
 	Client* getOwner();
+	std::vector<double> & getTransactionHistory();
 };
 
 #endif // __ACCOUNT__

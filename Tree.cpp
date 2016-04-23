@@ -190,6 +190,11 @@ void Tree::XmlNodeString(TreeNode* n, std::ofstream & outFile)
 		//xmlStr += "<InterestRate>" + std::to_string(n->getData()->getInterestRate()) + "</InterestRate>"; // *********** TODO
 		Client * client = account->getOwner();
 		outFile << "<Client>\n";
+
+			ss << client->getClientID(); // convert to string
+			outFile << "<ClientID>" + ss.str() + "</ClientID>\n";
+			ss.str(std::string()); // clear string stream
+
 			outFile << "<Name>" + client->getName() + "</Name>\n";
 			outFile << "<Address>" + client->getAddress() + "</Address>\n";
 			outFile << "<DateOfBirth>" + client->getDateOfBirth() + "</DateOfBirth>\n";
@@ -204,6 +209,20 @@ void Tree::XmlNodeString(TreeNode* n, std::ofstream & outFile)
 			outFile << "</ClientAccounts>\n";
 		outFile << "</Client>\n";
 
+		std::vector<double> transactions = account->getTransactionHistory();
+		outFile << "<TransactionsCount>" + std::to_string(transactions.size()) + "</TransactionsCount>\n";
+		if(transactions.size() > 0)
+		{
+			outFile << "<TransactionsHistory>\n";
+				for(int i = 0, size = transactions.size(); i < size; i++)
+				{
+					ss << transactions[i]; // convert to string
+					outFile << "<TransactionID>" + ss.str() + "</TransactionID>\n";
+					ss.str(std::string()); // clear string stream
+				}
+			outFile << "</TransactionsHistory>\n";
+		}
+
 		if(!n->isLeaf())
 		{
 			XmlNodeString(n->getLeft(), outFile);
@@ -217,7 +236,9 @@ void Tree::XmlParseNode(std::ifstream & inFile, std::stack<std::string> & s)
 {
 	
 	std::string line, accountNum, Balance, Password, Name, Address, DateOfBirth;
+	double ClientID, transactionsCount;
 	std::vector<double> clientAccounts;
+	std::vector<double> transactions;
 
 	if(!std::getline(inFile, line))
 		return;
@@ -233,6 +254,9 @@ void Tree::XmlParseNode(std::ifstream & inFile, std::stack<std::string> & s)
 		return;
 	s.push(line); // <Client>
 
+	if(!std::getline(inFile, line))
+		return;
+	ClientID = stod(XmlParseTag(line, "<ClientID>", s));
 	if(!std::getline(inFile, line))
 		return;
 	Name = XmlParseTag(line, "<Name>", s);
@@ -276,10 +300,36 @@ void Tree::XmlParseNode(std::ifstream & inFile, std::stack<std::string> & s)
 	if(clientExist)
 		owner = acc->getOwner();
 	else
-		owner = new Client(Name, Address, DateOfBirth);
+		owner = new Client(ClientID, Name, Address, DateOfBirth);
+
+	if(!std::getline(inFile, line))
+		return;
+	transactionsCount = stod(XmlParseTag(line, "<TransactionsCount>", s));
 
 	acc = new Account(stod(accountNum), stod(Balance), Password, owner);
 	insert(acc);
+
+	if(transactionsCount > 0)
+	{
+		if(!std::getline(inFile, line))
+			return;
+		s.push(line); // <TransactionsHistory>
+
+		double transID;
+		for(int i = 0; i < transactionsCount; i++)
+		{
+			if(!std::getline(inFile, line))
+				return;
+			transID = stod(XmlParseTag(line, "<TransactionID>", s));
+			acc->addTransactionToHistory(transID);
+		}
+
+		if(!std::getline(inFile, line) || line.substr(2) != s.top().substr(1))
+			return;
+
+		s.pop(); // pop </TransactionsHistory>
+	}
+
 
 	while(line != "<Account>")
 	{

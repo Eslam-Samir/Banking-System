@@ -7,6 +7,7 @@
 class Client
 {
 private:
+	double clientID;
 	std::string name;
 	std::string address;
 	std::string dateOfBirth;
@@ -14,11 +15,13 @@ private:
 
 public:
 	Client();
-	Client(std::string n,std::string a,std::string d);
+	Client(double id, std::string n,std::string a,std::string d);
+	void setClientID(double id);
 	void setName(std::string n);
 	void setAdress(std::string a);
 	void setDateOfBirth(std::string d);
 	void addAccount(double accountNumber);
+	double getClientID();
 	std::string getName();
 	std::string getAddress();
 	std::string getDateOfBirth();

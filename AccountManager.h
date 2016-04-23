@@ -16,7 +16,6 @@ private:
 	AccountManager();
 	
 public:
-	
 	static AccountManager * getAccountManager();
 	double getNumberOfAccounts();
 	double addAccount(double bal, std::string pass, Client* owner);
@@ -61,6 +60,12 @@ double AccountManager::addAccount(double bal, std::string pass, Client* owner)
 }
 void AccountManager::removeAccount(Account* user)
 {
+	// delete client information from memory if he doesn't have other accounts
+	if(user->getOwner()->getMyAccounts().size() == 1)
+	{
+		delete user->getOwner();
+	}
+	// remove account
 	accounts->remove(user);
 	NumberOfAccounts--;
 }
@@ -93,6 +98,11 @@ bool AccountManager::saveAccounts(std::string filename)
 {
 	if(accounts->isEmpty())
 		return false;
+	if((filename.length() < 5) || (filename.substr(filename.length() - 4, 4) != ".xml"))
+	{
+		std::cout << "Wrong file extension \"must be an xml file\"" << std::endl;
+		return false;
+	}
 
 	std::ofstream outFile(filename);
 	if(!outFile.is_open())
@@ -110,6 +120,12 @@ bool AccountManager::saveAccounts(std::string filename)
 
 bool AccountManager::loadAccounts(std::string filename)
 {
+	if((filename.length() < 5) || (filename.substr(filename.length() - 4, 4) != ".xml"))
+	{
+		std::cout << "Wrong file extension \"must be an xml file\"" << std::endl;
+		return false;
+	}
+
 	std::ifstream inFile(filename);
 	if(!inFile.is_open())
 		return false;

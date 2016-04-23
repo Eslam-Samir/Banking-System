@@ -6,7 +6,6 @@ TreeNode::TreeNode(Account* x, TreeNode* left, TreeNode* right)
 	this->left = left; 
 	this->right = right; 
 }
-
 void TreeNode::setData(Account* x) 
 {
 	account = x;
