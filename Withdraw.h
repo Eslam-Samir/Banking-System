@@ -7,7 +7,7 @@ class Withdraw :public Transaction {
 
 private:
 	double amount;
-	void withdrawAmount();
+
 
 public:
 

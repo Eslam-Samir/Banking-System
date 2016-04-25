@@ -1,4 +1,6 @@
 #include"Loan.h"
+#include "AccountManager.h"
+#include "Account.h"
 
 
 
@@ -17,16 +19,24 @@ void Loan:: setAmount(double x)
 }
 
 
-void Loan::loanAmount(bool t)
-{
-	 /*/
-	 if (t==true)
-		balance = balance + amount;
-	
-	/*/
-}
+
 
 void Loan::modify()
 {
-	loanAmount();
+	cout << "Enter the accout number: ";
+	double n;
+	cin >> n;
+	cout << "Is the loan accepted?";
+	bool accept;
+	cin >> accept;
+	if (accept == true)
+	{
+
+		AccountManager *ptr = AccountManager::getAccountManager();
+		Account *account = ptr->searchAccount(n);
+		account->setBalance(account->getBalance() + amount);
+		cout << "Your Transaction is completed your balance now is: " << account->getBalance();
+	}
+	else
+		cout << "Loan request was refused";
 }

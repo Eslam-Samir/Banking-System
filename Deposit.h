@@ -15,7 +15,6 @@ public:
 
 	double getAmount();
  
-	void setAmount(double x);
 
 	void modify();
 	

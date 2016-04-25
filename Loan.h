@@ -6,7 +6,6 @@ using namespace std;
 class Loan :public Transaction {
 private:
 	double amount;
-	void loanAmount(bool t);
 
 public:
 
