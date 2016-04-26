@@ -1,34 +1,30 @@
 #include "Deposit.h"
-#include "AccountManager.h"
-#include "Account.h"
 
-
-
-Deposit::Deposit(double x)
+namespace BankingSystem
 {
-	amount = x;
-}
 
+Deposit::Deposit(double AccountNum, double amount) : Transaction(AccountNum, TransactionType::deposit)
+{
+	this->amount = amount;
+}
 double Deposit::getAmount()
 {
 	return amount;
 }
-
-
 void Deposit::modify()
 {
-	cout << "Enter the account number: ";
-	double n;
-	cin >> n;
-	cout << "\n";
-
-	AccountManager *ptr = AccountManager::getAccountManager();
-	Account *account = ptr->searchAccount(n);
+	AccountManager* ptr = AccountManager::getAccountManager();
+	Account *account = ptr->searchAccount(getAccountNumber());
 	account->setBalance(account->getBalance() + amount);
-	cout << "Your Transaction is completed your balance now is: " << account->getBalance();
+	account->addTransactionToHistory(getTransactionId());
+
+	std::cout << "The Transaction is Completed" << std::endl;
+	std::cout << "You Have Deposited $" << amount << std::endl;
+	std::cout << "Your New Balance: $" << account->getBalance() << std::endl;
+	std::cout << "Transaction Number: " << getTransactionId() << std::endl;
 }
 
-
+}
 		
 	
 

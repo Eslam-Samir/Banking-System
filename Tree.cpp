@@ -1,5 +1,7 @@
 #include "Tree.h"
 
+namespace BankingSystem
+{
 
 Tree::Tree(TreeNode* rootPtr)
 {
@@ -385,4 +387,6 @@ double Tree::loadXml(std::ifstream & inFile)
 	s.push(line); // <Account>
 	XmlParseNode(inFile, s);
 	return numberOfAccounts;
+}
+
 }

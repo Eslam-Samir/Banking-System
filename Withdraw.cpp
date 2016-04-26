@@ -1,40 +1,33 @@
 #include "Withdraw.h"
-#include "AccountManager.h"
-#include "Account.h"
 
-Withdraw ::Withdraw(double x )
+namespace BankingSystem
 {
-	amount = x;
+
+Withdraw ::Withdraw(double AccountNum, double amount) : Transaction(AccountNum, TransactionType::withdraw)
+{
+	this->amount = amount;
 }
 
 double Withdraw:: getAmount()
 {
 	return amount;
 }
-void Withdraw:: setAmount(double x)
-{
-	amount = x;
-}
-
-
 void Withdraw:: modify()
 {
-	cout << "Enter the account number: ";
-	double n;
-	cin >> n;
-	AccountManager *ptr = AccountManager::getAccountManager();
-	Account *account = ptr->searchAccount(n);
+	AccountManager* ptr = AccountManager::getAccountManager();
+	Account *account = ptr->searchAccount(getAccountNumber());
 
 	if (account->getBalance() < amount)
 	{
-
-		cout << "No enough money for the withdraw";
+		std::cout << "No enough money for the withdraw";
+		return;
 	}
-
-	else
-	{
-		account->setBalance(account->getBalance() - amount);
-		cout << "your transaction is completed your balance now is " << account->getBalance();
-	}
+	account->setBalance(account->getBalance() - amount);
+	account->addTransactionToHistory(getTransactionId());
+	std::cout << "The Transaction is Completed" << std::endl;
+	std::cout << "You Have Withdrawn: $" << amount << std::endl;
+	std::cout << "Your New Balance: $" << account->getBalance() << std::endl;
+	std::cout << "Transaction Number: " << getTransactionId() << std::endl;
 }
 
+}

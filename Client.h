@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
+namespace BankingSystem
+{
+
 class Client
 {
 private:
@@ -29,5 +32,7 @@ public:
 	std::vector<double> & getMyAccounts();
 
 };
+
+}
 
 #endif // __CLIENT__

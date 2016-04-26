@@ -1,4 +1,6 @@
 #include "Client.h"
+namespace BankingSystem
+{
 
 Client::Client()
 {}
@@ -63,4 +65,6 @@ std::string Client::getDateOfBirth()
 std::vector<double> & Client::getMyAccounts()
 {
 	return myAccounts;
+}
+
 }

@@ -1,33 +1,33 @@
 #include "Transaction.h"
 
-//Transaction::Transaction()
-//{}
+namespace BankingSystem
+{
 
-Transaction::Transaction(double id = 0, double number = 0) {
-	TransactionId = id;
-	AccountNumber = number;
+Transaction::Transaction(double number, TransactionType type) 
+{
+	double transNum = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		transNum += rand() % 10;
+		transNum *= 10;
+	}
+	transNum += rand() % 10;
+	this->TransactionId = transNum;
+	this->AccountNumber = number;
+	this->Type = type;
 }
-
-//setters and getters
+//getters
+TransactionType Transaction::getType()
+{
+	return Type;
+}
  double Transaction::getTransactionId()
 {
 	return TransactionId;
 }
-void Transaction::setTransactionId(double x)
-{
-	TransactionId = x;
-}
-
 double Transaction::getAccountNumber()
 {
 	return AccountNumber;
 }
-void Transaction::setTAccountNumber(double x)
-{
-	AccountNumber = x;
-}
 
- void Transaction::modify()
-{
-	
 }

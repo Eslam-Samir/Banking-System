@@ -1,26 +1,41 @@
-#pragma once
-#include <iostream>
-using namespace std;
+#ifndef __TRANSACTION__
+#define __TRANSACTION__
 
-class Transaction {
+#include <iostream>
+#include "AccountManager.h"
+
+namespace BankingSystem
+{
+
+enum TransactionType {
+	withdraw = 0,
+	deposit = 1,
+	transfer = 2,
+	loan = 3,
+	query = 4
+};
+
+class Transaction 
+{
 private:
 	double TransactionId;
 	double AccountNumber;
-	//date
+	TransactionType Type;
+	//date TODO
 
 public:
 	//constructor
-	//Transaction();
-	Transaction(double id = 0, double number = 0);
+	Transaction(double number, TransactionType type);
 
-	//setters and getters
-	double getTransactionId();
-	void setTransactionId(double x);
-	
-	double getAccountNumber();
-	void setTAccountNumber(double x);
-	
-	virtual void modify();
+	//getters
+	TransactionType getType();
+	double getTransactionId();	
+	double getAccountNumber();	
+	virtual void modify() = 0;
 	
 
 };
+
+}
+
+#endif // __TRANSACTION__

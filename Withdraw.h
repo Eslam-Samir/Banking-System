@@ -1,23 +1,25 @@
-#pragma once
+#ifndef __WITHDRAW__
+#define __WITHDRAW__
+
 #include <iostream>
 #include "Transaction.h"
-using namespace std;
+#include "AccountManager.h"
+#include "Account.h"
 
-class Withdraw :public Transaction {
+namespace BankingSystem
+{
 
+class Withdraw :public Transaction 
+{
 private:
 	double amount;
 
-
 public:
-
-	Withdraw(double x);
-	
+	Withdraw(double AccountNum, double amount);
 	double getAmount();
-	
-	void setAmount(double x);
-	
-
 	void modify();
-	
 };
+
+}
+
+#endif // __WITHDRAW__

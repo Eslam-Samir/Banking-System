@@ -1,3 +1,4 @@
+
 #ifndef __ACCOUNTMANAGER__
 #define __ACCOUNTMANAGER__
 
@@ -7,135 +8,28 @@
 #include "Account.h"
 #include "Tree.h"
 
+namespace BankingSystem
+{
+	
 class AccountManager
 {
 private:
 	double NumberOfAccounts;
 	Tree * accounts; // to do tree will only fill the right half if accounts added to the tree in order
-	static AccountManager * accountManagerPtr;
-	AccountManager();
+	static AccountManager * accountManagerPtr; // singleton
+	AccountManager::AccountManager();
 	
 public:
-	static AccountManager * getAccountManager();
-	double getNumberOfAccounts();
-	double addAccount(double bal, std::string pass, Client* owner);
-	void removeAccount(Account* user);
-	Account* searchAccount(double account_no);
-	bool validateAccount(double account_no, std::string pass);
-
-	bool saveAccounts(std::string filename);
-	bool loadAccounts(std::string filename);
+	static AccountManager * AccountManager::getAccountManager();
+	double AccountManager::addAccount(double bal, std::string pass, Client* owner);
+	void AccountManager::removeAccount(Account* user);
+	Account* AccountManager::searchAccount(double account_no);
+	bool AccountManager::validateAccount(double account_no, std::string pass);
+	double AccountManager::getNumberOfAccounts();
+	bool AccountManager::saveAccounts(std::string filename);
+	bool AccountManager::loadAccounts(std::string filename);
 };
-
-AccountManager::AccountManager()
-{
-	srand (time(NULL));
-	accounts = new Tree();
-	NumberOfAccounts = 0;
-}
-
-inline AccountManager * AccountManager::getAccountManager()
-{
-	if(accountManagerPtr == nullptr)
-	{
-		accountManagerPtr = new AccountManager();
-	}
-	return accountManagerPtr;
-}
-
-double AccountManager::addAccount(double bal, std::string pass, Client* owner)
-{
-	
-	double accountNum = 0;
-	for (int i = 0; i < 3; i++)
-	{
-		accountNum += rand() % 10;
-		accountNum *= 10;
-	}
-	accountNum += rand() % 10;
-	Account *tmp = new Account(accountNum, bal, pass, owner);
-	accounts->insert(tmp);
-	NumberOfAccounts++;
-	return accountNum;
-}
-void AccountManager::removeAccount(Account* user)
-{
-	if(user == nullptr)
-		return;
-
-	user->getOwner()->removeAccount(user->getAccountNumber());
-	// delete client information from memory if he doesn't have other accounts
-	if(user->getOwner()->getMyAccounts().size() == 0)
-	{
-		delete user->getOwner();
-	}
-	// remove account
-	accounts->remove(user);
-	NumberOfAccounts--;
-}
-Account* AccountManager::searchAccount(double account_no)
-{
-	return accounts->search(account_no);
-}
-bool AccountManager::validateAccount(double account_no, std::string pass)
-{
-	Account* tmp = accounts->search(account_no);
-	if(tmp == nullptr)
-	{
-		return false;
-	}
-	else if(tmp->getPassword() == pass)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-double AccountManager::getNumberOfAccounts()
-{
-	return NumberOfAccounts;
-}
-bool AccountManager::saveAccounts(std::string filename)
-{
-	if(accounts->isEmpty())
-		return false;
-	if((filename.length() < 5) || (filename.substr(filename.length() - 4, 4) != ".xml"))
-	{
-		std::cout << "Wrong file extension \"must be an xml file\"" << std::endl;
-		return false;
-	}
-
-	std::ofstream outFile(filename);
-	if(!outFile.is_open())
-		return false;
-
-	outFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-	std::stringstream ss;
-	ss << getNumberOfAccounts(); // convert to string
-	outFile << "<NumberOfAccounts>" + ss.str() + "</NumberOfAccounts>\n";
-	ss.str(std::string()); // clear string stream
-	accounts->createXml(outFile);
-
-	return true;
-}
-
-bool AccountManager::loadAccounts(std::string filename)
-{
-	if((filename.length() < 5) || (filename.substr(filename.length() - 4, 4) != ".xml"))
-	{
-		std::cout << "Wrong file extension \"must be an xml file\"" << std::endl;
-		return false;
-	}
-
-	std::ifstream inFile(filename);
-	if(!inFile.is_open())
-		return false;
-
-	NumberOfAccounts = accounts->loadXml(inFile);
-
 }
 
 #endif // __ACCOUNTMANAGER__
+

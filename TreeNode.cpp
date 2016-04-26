@@ -1,5 +1,8 @@
 #include "TreeNode.h"
 
+namespace BankingSystem
+{
+
 TreeNode::TreeNode(Account* x, TreeNode* left, TreeNode* right)
 {
 	account = x; 
@@ -42,4 +45,6 @@ bool TreeNode::isLeaf()
 		return true;
 	else
 		return false;
+}
+
 }

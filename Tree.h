@@ -10,6 +10,9 @@
 
 #include "TreeNode.h"
 
+namespace BankingSystem
+{
+
 class Tree
 {
 private:
@@ -31,5 +34,6 @@ public:
 	double loadXml(std::ifstream & inFile);
 };
 
+}
 
 #endif // __TREE__

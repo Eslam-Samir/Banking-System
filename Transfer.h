@@ -1,24 +1,27 @@
-#pragma once
+#ifndef __TRANSFER__
+#define __TRANSFER__
+
 #include <iostream>
 #include "Transaction.h"
-using namespace std;
+#include "AccountManager.h"
+#include "Account.h"
 
-class Transfer :public Transaction {
+namespace BankingSystem
+{
+
+class Transfer :public Transaction 
+{
 private:
+	double TransferredTo;
 	double amount;
 
 public:
-
-	Transfer(double x);
-	
-
+	Transfer(double from, double amount, double to);	
 	double getAmount();
-	
-	void setAmount(double x);
-	
-
+	double getTransferredTo();
 	void modify();
-	
-
-
 };
+
+}
+
+#endif // __TRANSFER__

@@ -1,21 +1,26 @@
-#pragma once
+#ifndef __LOAN__
+#define __LOAN__
+
 #include <iostream>
 #include "Transaction.h"
-using namespace std;
+#include "AccountManager.h"
+#include "Account.h"
 
-class Loan :public Transaction {
+namespace BankingSystem
+{
+
+class Loan :public Transaction 
+{
 private:
 	double amount;
-
+	std::string name;
 public:
-
-	Loan(double x);
-	
-	double getAmount();
-	
-	void setAmount(double x);
-	
-
+	Loan(double AccountNum, double amount);	
+	double getAmount();	
 	void modify();
 	
 }; 
+
+}
+
+#endif // __LOAN__

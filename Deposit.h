@@ -1,21 +1,26 @@
-#pragma once
+#ifndef __DEPOSIT__
+#define __DEPOSIT__
+
 #include <iostream>
 #include "Transaction.h"
-using namespace std;
+#include "AccountManager.h"
+#include "Account.h"
 
-class Deposit :public Transaction {
+namespace BankingSystem
+{
 
+class Deposit :public Transaction 
+{
 private:
 	double amount;
-	void DepositAmount();
 
 public:
-
-	Deposit(double x);
-
+	Deposit(double AccountNum, double amount);
 	double getAmount();
- 
-
 	void modify();
 	
 }; 
+
+}
+
+#endif // __DEPOSIT__

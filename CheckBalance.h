@@ -1,14 +1,21 @@
-#pragma once
-#include <iostream>
+#ifndef __CHECKBALANCE__
+#define __CHECKBALANCE__
+
 #include "Transaction.h"
-using namespace std;
+#include "AccountManager.h"
+#include <iostream>
 
-class CheckBalance :public Transaction {
+namespace BankingSystem
+{
 
-private:
-	double check();
-
+class CheckBalance :public Transaction 
+{
 public:
+	CheckBalance(double AccountNum);
 	void modify();
 
 };
+
+}
+
+#endif // __CHECKBALANCE__

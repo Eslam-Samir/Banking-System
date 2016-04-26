@@ -3,6 +3,9 @@
 
 #include "Account.h"
 
+namespace BankingSystem
+{
+
 class TreeNode 
 {
 private:
@@ -21,5 +24,6 @@ public:
 	bool isLeaf();
 };
 
+}
 
 #endif // __TREENODE__

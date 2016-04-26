@@ -1,4 +1,8 @@
+
 #include "Account.h"
+
+namespace BankingSystem
+{
 
 Account::Account(double accountNum, double bal, std::string pass, Client* owner)
 {
@@ -44,4 +48,5 @@ Client* Account::getOwner()
 std::vector<double> & Account::getTransactionHistory()
 {
 	return transactions;
+}
 }

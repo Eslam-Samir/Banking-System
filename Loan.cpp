@@ -1,42 +1,37 @@
 #include"Loan.h"
-#include "AccountManager.h"
-#include "Account.h"
 
-
-
-Loan::Loan(double x = 0)
+namespace BankingSystem
 {
-	amount = x;
+
+Loan::Loan(double AccountNum, double amount) : Transaction(AccountNum, TransactionType::loan)
+{
+	this->amount = amount;
 }
 
 double Loan:: getAmount()
 {
 	return amount;
 }
-void Loan:: setAmount(double x)
-{
-	amount = x;
-}
-
-
-
 
 void Loan::modify()
 {
-	cout << "Enter the accout number: ";
-	double n;
-	cin >> n;
-	cout << "Is the loan accepted?";
+	std::cout << "Is " + name + "loan accepted?" << std::endl;
 	bool accept;
-	cin >> accept;
+	std::cin >> accept;
 	if (accept == true)
 	{
-
-		AccountManager *ptr = AccountManager::getAccountManager();
-		Account *account = ptr->searchAccount(n);
+		std::cout << "You loan request is granted" << std::endl;
+		AccountManager* ptr = AccountManager::getAccountManager();
+		Account *account = ptr->searchAccount(getAccountNumber());
 		account->setBalance(account->getBalance() + amount);
-		cout << "Your Transaction is completed your balance now is: " << account->getBalance();
+		account->addTransactionToHistory(getTransactionId());
+		std::cout << "The Transaction is Completed" << std::endl;
+		std::cout << "You Loaned $" << amount << "from The Bank" << std::endl;
+		std::cout << "Your New Balance: $" << account->getBalance() << std::endl;
+		std::cout << "Transaction Number: " << getTransactionId() << std::endl;
 	}
 	else
-		cout << "Loan request was refused";
+		std::cout << "Loan request was refused";
+}
+
 }

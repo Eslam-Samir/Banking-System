@@ -5,6 +5,10 @@
 #include <string>
 #include <vector>
 #include "Client.h"
+
+namespace BankingSystem
+{
+
 class Account
 {
 private:
@@ -27,6 +31,8 @@ public:
 	Client* getOwner();
 	std::vector<double> & getTransactionHistory();
 };
+
+}
 
 #endif // __ACCOUNT__
 
