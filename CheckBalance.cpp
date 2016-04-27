@@ -6,6 +6,9 @@ namespace BankingSystem
 CheckBalance::CheckBalance(double AccountNum) : Transaction(AccountNum, TransactionType::query)
 {
 }
+CheckBalance::CheckBalance(double id, double AccountNum) : Transaction(id, AccountNum, TransactionType::query)
+{
+}
 
 void CheckBalance::modify()
 {

@@ -17,6 +17,7 @@ private:
 
 public:
 	Transfer(double from, double amount, double to);	
+	Transfer(double id, double from, double amount, double to);	
 	double getAmount();
 	double getTransferredTo();
 	void modify();

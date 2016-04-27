@@ -7,6 +7,10 @@ Withdraw ::Withdraw(double AccountNum, double amount) : Transaction(AccountNum, 
 {
 	this->amount = amount;
 }
+Withdraw ::Withdraw(double id, double AccountNum, double amount) : Transaction(id, AccountNum, TransactionType::withdraw)
+{
+	this->amount = amount;
+}
 
 double Withdraw:: getAmount()
 {

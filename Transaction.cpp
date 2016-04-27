@@ -16,6 +16,12 @@ Transaction::Transaction(double number, TransactionType type)
 	this->AccountNumber = number;
 	this->Type = type;
 }
+Transaction::Transaction(double id, double number, TransactionType type) 
+{
+	this->TransactionId = id;
+	this->AccountNumber = number;
+	this->Type = type;
+}
 //getters
 TransactionType Transaction::getType()
 {

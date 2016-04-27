@@ -14,6 +14,7 @@
 #include "Transfer.h"
 #include <map>
 #include <utility>
+#include <fstream>
 
 namespace BankingSystem
 {
@@ -22,6 +23,9 @@ class TransactionManager
 {
 private:
 	TransactionManager();
+	void createXml(std::ofstream & outFile);
+	void loadXml(std::ifstream & inFile);
+	std::string XmlParseTag(std::string & line, std::string TagName, std::stack<std::string> & s);
 
 	std::queue<Client*> withdraw;
 	std::queue<Client*> deposit;
@@ -41,6 +45,9 @@ public:
 	void serveBalanceRequests();
 	void serveLoanRequests();
 	void addTransactionsRequest(Client* client, TransactionType type);
+	Transaction* searchTransaction(double transactionID);
+	bool saveTransactions(std::string filename);
+	bool loadTransactions(std::string filename);
 
 };
 

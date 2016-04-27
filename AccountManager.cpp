@@ -113,6 +113,6 @@ bool AccountManager::loadAccounts(std::string filename)
 		return false;
 
 	NumberOfAccounts = accounts->loadXml(inFile);
-
+	return true;
 }
 }

@@ -13,9 +13,10 @@ class Loan :public Transaction
 {
 private:
 	double amount;
-	std::string name;
+
 public:
 	Loan(double AccountNum, double amount);	
+	Loan(double id, double AccountNum, double amount);	
 	double getAmount();	
 	void modify();
 	

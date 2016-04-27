@@ -12,6 +12,7 @@ class CheckBalance :public Transaction
 {
 public:
 	CheckBalance(double AccountNum);
+	CheckBalance(double id, double AccountNum);
 	void modify();
 
 };

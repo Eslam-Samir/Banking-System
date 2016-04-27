@@ -26,6 +26,7 @@ private:
 public:
 	//constructor
 	Transaction(double number, TransactionType type);
+	Transaction(double id, double number, TransactionType type);
 
 	//getters
 	TransactionType getType();

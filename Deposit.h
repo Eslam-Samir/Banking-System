@@ -16,6 +16,7 @@ private:
 
 public:
 	Deposit(double AccountNum, double amount);
+	Deposit(double id, double AccountNum, double amount);
 	double getAmount();
 	void modify();
 	

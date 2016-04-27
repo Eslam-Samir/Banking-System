@@ -7,6 +7,10 @@ Deposit::Deposit(double AccountNum, double amount) : Transaction(AccountNum, Tra
 {
 	this->amount = amount;
 }
+Deposit::Deposit(double id, double AccountNum, double amount) : Transaction(id, AccountNum, TransactionType::deposit)
+{
+	this->amount = amount;
+}
 double Deposit::getAmount()
 {
 	return amount;
