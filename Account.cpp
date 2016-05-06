@@ -56,7 +56,7 @@ void Account::printMyTransactionHistory()
 	Transaction * currentTrandaction=nullptr;
 		if (myfile.is_open())
 		{
-			for(i=transactions.rbegin();i!=transactions.rend();i--)
+			for(i=transactions.rbegin();i!=transactions.rend();i++)
 			{
 				currentTrandaction=(*manager).searchTransaction(*i);
 				(*currentTrandaction).printTransaction(myfile);
