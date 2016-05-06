@@ -1,9 +1,8 @@
 
 #include "Account.h"
-
+#include "TransactionManager.h"
 namespace BankingSystem
 {
-
 Account::Account(double accountNum, double bal, std::string pass, Client* owner)
 {
 	accountNumber = accountNum;
@@ -49,8 +48,9 @@ std::vector<double> & Account::getTransactionHistory()
 {
 	return transactions;
 }
-void Account::printMyTransactionHistory(TransactionManager* manager)
+void Account::printMyTransactionHistory()
 {
+	TransactionManager *manager =TransactionManager::getTransactionManager();
 	std::ofstream myfile ("printall.txt");
 	std::vector<double>::iterator i;
 	Transaction * currentTrandaction=nullptr;

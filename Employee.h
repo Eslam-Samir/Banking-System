@@ -1,4 +1,9 @@
+#ifndef __EMPLOYEE__
+#define __EMPLOYEE__
+
 #include <string>
+namespace BankingSystem 
+{
 class Employee
 {
 private:
@@ -20,3 +25,5 @@ protected:
 
 };
 
+}
+#endif // __EMPLOYEE__

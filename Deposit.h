@@ -2,10 +2,11 @@
 #define __DEPOSIT__
 
 #include <iostream>
+#include<fstream>
+#include<string>
 #include "Transaction.h"
 #include "AccountManager.h"
 #include "Account.h"
-
 namespace BankingSystem
 {
 

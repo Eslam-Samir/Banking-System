@@ -41,7 +41,7 @@ void Loan::modify()
 
 void Loan::printTransaction(std::ofstream &OutputFile)
 {
-	 if (OutputFile)
+	if (OutputFile)
     {
 		OutputFile<<"Loan Date: "<<getFormatedDate()<<"\n";
 		OutputFile<<"Loaned amount of "<<amount<<" $"<<"\n";

@@ -1,4 +1,6 @@
 #include "Employee.h"
+namespace BankingSystem 
+{
 Employee:: Employee()
 {
 	Username="";
@@ -24,4 +26,5 @@ void Employee::setPassword(std::string Password)
 void Employee::setUsername(std::string Username)
 {
 	(*this).Username=Username;
+}
 }

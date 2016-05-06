@@ -54,7 +54,7 @@ void Transfer::modify()
 }
 void Transfer::printTransaction(std::ofstream &OutputFile)
 {
-	 if (OutputFile)
+	if (OutputFile)
     {
 		OutputFile<<"Transfer Date: "<<getFormatedDate()<<"\n";
 		OutputFile<<"Transfer to: "<<getOldBalanceTo()<<" total of "<<amount<<" $"<<"\n";
