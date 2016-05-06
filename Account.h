@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include "Client.h"
+#include "TransactionManager.h"
+#include "Transaction.h"
 
 namespace BankingSystem
 {
@@ -30,6 +32,8 @@ public:
 	std::string getPassword();
 	Client* getOwner();
 	std::vector<double> & getTransactionHistory();
+	void printMyTransactionHistory(TransactionManager* manager);
+	
 };
 
 }

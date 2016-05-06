@@ -7,14 +7,14 @@ using namespace BankingSystem;
 void main()
 {
 	 
-	AccountManager * ptr = AccountManager::getAccountManager();
-	TransactionManager * transManager = TransactionManager::getTransactionManager();
+	//AccountManager * ptr = AccountManager::getAccountManager();
+	//TransactionManager * transManager = TransactionManager::getTransactionManager();
+	//ptr->loadAccounts("hello.xml");
+	//transManager->loadTransactions("trans.xml");
+	//cout << transManager->searchTransaction(2566)->getFormatedDate();
+	
+	
 	/*ptr->loadAccounts("hello.xml");
-	transManager->loadTransactions("trans.xml");
-	cout << transManager->searchTransaction(2566)->getFormatedDate();
-	*/
-	/*
-	ptr->loadAccounts("hello.xml");
 	Client* eslam = new Client(1, "Eslam Samir", "fsdags", "08/10/1994");
 	transManager->addTransactionsRequest(eslam, TransactionType::deposit);
 	transManager->serveDepositRequests();

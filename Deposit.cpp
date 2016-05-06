@@ -1,5 +1,11 @@
-#include "Deposit.h"
+#include<iostream>
+#include<fstream>
+#include<string>
 
+#include<string>
+#include "Transaction.h"
+#include "AccountManager.h"
+#include "Account.h"
 namespace BankingSystem
 {
 
@@ -31,6 +37,14 @@ void Deposit::modify()
 
 void Deposit::printTransaction(std::ofstream &OutputFile)
 {
+	 if (OutputFile)
+    {
+		OutputFile<<"Deposit Date: "<<getFormatedDate()<<"\n";
+		OutputFile<<"Deposit amount of "<<amount<<" $"<<"\n";
+		OutputFile << "Your old balance was: "<< getOldBalance()<<"\n";
+		OutputFile<<"Your current balace is: "<<getOldBalance()+amount;
+        OutputFile.close();
+    }
 }
 
 }

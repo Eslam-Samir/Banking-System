@@ -49,4 +49,18 @@ std::vector<double> & Account::getTransactionHistory()
 {
 	return transactions;
 }
+void Account::printMyTransactionHistory(TransactionManager* manager)
+{
+	std::ofstream myfile ("printall.txt");
+	std::vector<double>::iterator i;
+	Transaction * currentTrandaction=nullptr;
+		if (myfile.is_open())
+		{
+			for(i=transactions.end();i!=transactions.begin();i--)
+			{
+				currentTrandaction=(*manager).searchTransaction(*i);
+				(*currentTrandaction).printTransaction(myfile);
+			}	
+		}
+}
 }
