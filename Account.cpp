@@ -51,7 +51,7 @@ std::vector<double> & Account::getTransactionHistory()
 void Account::printMyTransactionHistory()
 {
 	TransactionManager *manager =TransactionManager::getTransactionManager();
-	std::ofstream myfile ("printall.txt");
+	std::ofstream myfile ("Transactions of: "+std::to_string(accountNumber)+".txt");
 	std::vector<double>::reverse_iterator i;
 	Transaction * currentTrandaction=nullptr;
 		if (myfile.is_open())
