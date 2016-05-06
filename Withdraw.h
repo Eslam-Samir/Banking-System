@@ -19,6 +19,7 @@ public:
 	Withdraw(double id, time_t date, double balance, double AccountNum, double amount);
 	double getAmount();
 	void modify();
+	void printTransaction(std::ofstream &OutputFile);
 };
 
 }

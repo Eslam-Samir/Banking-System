@@ -39,4 +39,8 @@ void Loan::modify()
 		std::cout << "Loan request was refused";
 }
 
+void Loan::printTransaction(std::ofstream &OutputFile)
+{
+}
+
 }

@@ -54,11 +54,11 @@ time_t Transaction::getDate()
 {
 	return Date;
 }
-/*std::string Transaction::getFormatedDate()
+std::string Transaction::getFormatedDate()
 {
 	char* s=new char[26];
 	ctime_s(s,26,&Date);
 	return s;
-}*/
+}
 
 }

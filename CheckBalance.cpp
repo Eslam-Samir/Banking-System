@@ -21,4 +21,8 @@ void CheckBalance::modify()
 	std::cout << "Transaction Number: " << getTransactionId() << std::endl;
 }
 
+void CheckBalance::printTransaction(std::ofstream &OutputFile)
+{
+}
+
 }

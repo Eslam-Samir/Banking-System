@@ -35,4 +35,8 @@ void Withdraw:: modify()
 	std::cout << "Transaction Number: " << getTransactionId() << std::endl;
 }
 
+void Withdraw::printTransaction(std::ofstream &OutputFile)
+{
+}
+
 }

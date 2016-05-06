@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <ctime>
+#include <fstream>
 #include "AccountManager.h"
 
 namespace BankingSystem
@@ -39,11 +40,11 @@ public:
 	double getAccountNumber();	
 	double getOldBalance();
 	time_t getDate();
-	//std::string getFormatedDate();
+	std::string getFormatedDate();
 
 	// virtual functions for polymorphism
 	virtual void modify() = 0;
-	virtual void printTransaction(std::ifstream &OutputFile);
+	virtual void printTransaction(std::ofstream &OutputFile) = 0;
 
 };
 

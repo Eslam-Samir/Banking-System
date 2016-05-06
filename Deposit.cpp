@@ -29,6 +29,10 @@ void Deposit::modify()
 	std::cout << "Transaction Number: " << getTransactionId() << std::endl;
 }
 
+void Deposit::printTransaction(std::ofstream &OutputFile)
+{
+}
+
 }
 		
 	

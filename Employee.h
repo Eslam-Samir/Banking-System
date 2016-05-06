@@ -16,7 +16,7 @@ public:
 	void setUsername(std::string Username);
 	void setPassword(std::string Password);
 protected:
-	virtual void AccessPermitions();
+	virtual void AccessPermitions() = 0;
 
 };
 
