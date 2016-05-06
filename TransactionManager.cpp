@@ -7,7 +7,7 @@ TransactionManager* TransactionManager::transactionManagerPtr = nullptr;
 
 TransactionManager::TransactionManager()
 {
-	srand (time(NULL));
+	srand ((unsigned int)time(NULL));
 }
 TransactionManager * TransactionManager::getTransactionManager()
 {
@@ -264,12 +264,16 @@ void TransactionManager::createXml(std::ofstream & outFile)
 		outFile << "<TransactionID>" + ss.str() + "</TransactionID>\n";
 		ss.str(std::string()); // clear string stream
 
+		outFile << "<Date>" + std::to_string(transaction->getDate()) + "</Date>\n";
+
 		ss << transaction->getAccountNumber(); // convert to string
 		outFile << "<AccountNumber>" + ss.str() + "</AccountNumber>\n";
 		ss.str(std::string()); // clear string stream
-		
-		//outFile << "<Date>" + date + "</Date>\n";		// ****************** TODO
 
+		ss << transaction->getOldBalance(); // convert to string
+		outFile << "<AccountOldBalance>" + ss.str() + "</AccountOldBalance>\n";
+		ss.str(std::string()); // clear string stream
+		
 		switch(type)
 		{
 		case TransactionType::deposit:
@@ -303,6 +307,10 @@ void TransactionManager::createXml(std::ofstream & outFile)
 			ss << transfer->getTransferredTo(); // convert to string
 			outFile << "<TransferredTo>" + ss.str() + "</TransferredTo>\n";
 			ss.str(std::string()); // clear string stream
+
+			ss << transaction->getOldBalance(); // convert to string
+			outFile << "<AccountOldBalanceTo>" + ss.str() + "</AccountOldBalanceTo>\n";
+			ss.str(std::string()); // clear string stream
 			outFile << "</Transfer>\n";
 			}
 			break;
@@ -325,7 +333,8 @@ void TransactionManager::loadXml(std::ifstream & inFile)
 {
 	std::stack<std::string> s;
 	std::string line;
-	double id, accountNum, amount, to;
+	double id, accountNum, amount, to, balance, balanceTo;
+	time_t date;
 	Transaction* transaction;
 
 	if(!std::getline(inFile, line))
@@ -342,25 +351,33 @@ void TransactionManager::loadXml(std::ifstream & inFile)
 
 		if(!std::getline(inFile, line))
 			return;
+		date = (time_t) stod(XmlParseTag(line, "<Date>", s));
+
+		if(!std::getline(inFile, line))
+			return;
 		accountNum = stod(XmlParseTag(line, "<AccountNumber>", s));
+
+		if(!std::getline(inFile, line))
+			return;
+		balance = stod(XmlParseTag(line, "<AccountOldBalance>", s));
 
 		if(type == "Deposit")
 		{
 			if(!std::getline(inFile, line))
 				return;
 			amount = stod(XmlParseTag(line, "<Amount>", s));
-			transaction = new Deposit(id, accountNum, amount);
+			transaction = new Deposit(id, date, balance, accountNum, amount);
 		}
 		else if(type == "Loan")
 		{
 			if(!std::getline(inFile, line))
 				return;
 			amount = stod(XmlParseTag(line, "<Amount>", s));
-			transaction = new Loan(id, accountNum, amount);
+			transaction = new Loan(id, date, balance, accountNum, amount);
 		}
 		else if(type == "BalanceCheck")
 		{
-			transaction = new CheckBalance(id, accountNum);
+			transaction = new CheckBalance(id, date, balance, accountNum);
 		}
 		else if(type == "Transfer")
 		{
@@ -370,14 +387,18 @@ void TransactionManager::loadXml(std::ifstream & inFile)
 			if(!std::getline(inFile, line))
 				return;
 			to = stod(XmlParseTag(line, "<TransferredTo>", s));
-			transaction = new Transfer(id, accountNum, amount, to);
+			if(!std::getline(inFile, line))
+				return;
+			balanceTo = stod(XmlParseTag(line, "<AccountOldBalanceTo>", s));
+
+			transaction = new Transfer(id, date, balance, balanceTo, accountNum, amount, to);
 		}
 		else if(type == "Withdraw")
 		{
 			if(!std::getline(inFile, line))
 				return;
 			amount = stod(XmlParseTag(line, "<Amount>", s));
-			transaction = new Withdraw(id, accountNum, amount);
+			transaction = new Withdraw(id, date, balance, accountNum, amount);
 		}
 		history[id] = transaction;
 		if(!std::getline(inFile, line))

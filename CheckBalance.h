@@ -12,7 +12,7 @@ class CheckBalance :public Transaction
 {
 public:
 	CheckBalance(double AccountNum);
-	CheckBalance(double id, double AccountNum);
+	CheckBalance(double id, time_t date, double balance, double AccountNum);
 	void modify();
 
 };

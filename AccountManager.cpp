@@ -7,7 +7,7 @@ AccountManager* AccountManager::accountManagerPtr = nullptr;
 
 AccountManager::AccountManager()
 {
-	srand (time(NULL));
+	srand ((unsigned int)time(NULL));
 	accounts = new Tree();
 	NumberOfAccounts = 0;
 }

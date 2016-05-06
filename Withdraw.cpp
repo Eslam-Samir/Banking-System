@@ -7,7 +7,7 @@ Withdraw ::Withdraw(double AccountNum, double amount) : Transaction(AccountNum, 
 {
 	this->amount = amount;
 }
-Withdraw ::Withdraw(double id, double AccountNum, double amount) : Transaction(id, AccountNum, TransactionType::withdraw)
+Withdraw ::Withdraw(double id, time_t date, double balance, double AccountNum, double amount) : Transaction(id, date, balance, AccountNum, TransactionType::withdraw)
 {
 	this->amount = amount;
 }
@@ -20,6 +20,7 @@ void Withdraw:: modify()
 {
 	AccountManager* ptr = AccountManager::getAccountManager();
 	Account *account = ptr->searchAccount(getAccountNumber());
+	setOldBalance(account->getBalance());
 
 	if (account->getBalance() < amount)
 	{

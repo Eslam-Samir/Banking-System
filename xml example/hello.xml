@@ -14,10 +14,8 @@
 <ClientAccount>6635</ClientAccount>
 </ClientAccounts>
 </Client>
-<TransactionsCount>2</TransactionsCount>
+<TransactionsCount>0</TransactionsCount>
 <TransactionsHistory>
-<TransactionID>2</TransactionID>
-<TransactionID>3</TransactionID>
 </TransactionsHistory>
 <Account>
 <AccountNumber>442</AccountNumber>

@@ -16,7 +16,7 @@ private:
 
 public:
 	Withdraw(double AccountNum, double amount);
-	Withdraw(double id, double AccountNum, double amount);
+	Withdraw(double id, time_t date, double balance, double AccountNum, double amount);
 	double getAmount();
 	void modify();
 };

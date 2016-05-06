@@ -7,7 +7,7 @@ Deposit::Deposit(double AccountNum, double amount) : Transaction(AccountNum, Tra
 {
 	this->amount = amount;
 }
-Deposit::Deposit(double id, double AccountNum, double amount) : Transaction(id, AccountNum, TransactionType::deposit)
+Deposit::Deposit(double id, time_t date, double balance, double AccountNum, double amount) : Transaction(id, date, balance, AccountNum, TransactionType::deposit)
 {
 	this->amount = amount;
 }
@@ -19,6 +19,7 @@ void Deposit::modify()
 {
 	AccountManager* ptr = AccountManager::getAccountManager();
 	Account *account = ptr->searchAccount(getAccountNumber());
+	setOldBalance(account->getBalance());
 	account->setBalance(account->getBalance() + amount);
 	account->addTransactionToHistory(getTransactionId());
 

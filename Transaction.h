@@ -2,6 +2,7 @@
 #define __TRANSACTION__
 
 #include <iostream>
+#include <ctime>
 #include "AccountManager.h"
 
 namespace BankingSystem
@@ -20,18 +21,27 @@ class Transaction
 private:
 	double TransactionId;
 	double AccountNumber;
+	double OldBalance;
 	TransactionType Type;
-	//date TODO
+	time_t Date; 
+
+protected:
+	void setOldBalance(double balance);
 
 public:
 	//constructor
 	Transaction(double number, TransactionType type);
-	Transaction(double id, double number, TransactionType type);
+	Transaction(double id, time_t date, double balance, double number, TransactionType type);
 
 	//getters
 	TransactionType getType();
 	double getTransactionId();	
 	double getAccountNumber();	
+	double getOldBalance();
+	time_t getDate();
+	std::string getFormatedDate();
+
+	// virtual functions for polymorphism
 	virtual void modify() = 0;
 	
 

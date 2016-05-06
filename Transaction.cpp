@@ -12,16 +12,27 @@ Transaction::Transaction(double number, TransactionType type)
 		transNum *= 10;
 	}
 	transNum += rand() % 10;
+
+	Date = time(0);
+
 	this->TransactionId = transNum;
 	this->AccountNumber = number;
 	this->Type = type;
 }
-Transaction::Transaction(double id, double number, TransactionType type) 
+Transaction::Transaction(double id, time_t date, double balance, double number, TransactionType type) 
 {
 	this->TransactionId = id;
 	this->AccountNumber = number;
 	this->Type = type;
+	this->OldBalance = balance;
+	this->Date = date;
 }
+
+void Transaction::setOldBalance(double balance)
+{
+	this->OldBalance = balance;
+}
+
 //getters
 TransactionType Transaction::getType()
 {
@@ -34,6 +45,18 @@ TransactionType Transaction::getType()
 double Transaction::getAccountNumber()
 {
 	return AccountNumber;
+}
+double Transaction::getOldBalance()
+{
+	return OldBalance;
+}
+time_t Transaction::getDate()
+{
+	return Date;
+}
+std::string Transaction::getFormatedDate()
+{
+	return ctime(&Date);
 }
 
 }

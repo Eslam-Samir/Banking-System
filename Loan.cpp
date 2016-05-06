@@ -7,7 +7,7 @@ Loan::Loan(double AccountNum, double amount) : Transaction(AccountNum, Transacti
 {
 	this->amount = amount;
 }
-Loan::Loan(double id, double AccountNum, double amount) : Transaction(id, AccountNum, TransactionType::loan)
+Loan::Loan(double id, time_t date, double balance, double AccountNum, double amount) : Transaction(id, date, balance, AccountNum, TransactionType::loan)
 {
 	this->amount = amount;
 }
@@ -21,6 +21,7 @@ void Loan::modify()
 {
 	AccountManager* ptr = AccountManager::getAccountManager();
 	Account *account = ptr->searchAccount(getAccountNumber());
+	setOldBalance(account->getBalance());
 	std::cout << "Is " + account->getOwner()->getName() + " loan accepted?" << std::endl;
 	bool accept;
 	std::cin >> accept;

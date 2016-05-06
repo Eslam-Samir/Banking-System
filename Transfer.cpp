@@ -8,10 +8,11 @@ Transfer::Transfer(double from, double amount, double to) : Transaction(from, Tr
 	this->amount = amount;
 	this->TransferredTo = to;
 }
-Transfer::Transfer(double id, double from, double amount, double to) : Transaction(id, from, TransactionType::transfer)
+Transfer::Transfer(double id, time_t date, double balanceFrom, double balanceTo, double from, double amount, double to) : Transaction(id, date, balanceFrom, from, TransactionType::transfer)
 {
 	this->amount = amount;
 	this->TransferredTo = to;
+	this->OldBalanceTo = balanceTo;
 }
 
 double Transfer::getAmount()
@@ -23,12 +24,19 @@ double Transfer::getTransferredTo()
 {
 	return TransferredTo;
 }
+double Transfer::getOldBalanceTo()
+{
+	return OldBalanceTo;
+}
 
 void Transfer::modify()
 {
 	AccountManager* ptr = AccountManager::getAccountManager();
 	Account *from = ptr->searchAccount(getAccountNumber());
 	Account *to = ptr->searchAccount(TransferredTo);
+	setOldBalance(from->getBalance());
+	OldBalanceTo = to->getBalance();
+
 	if (from->getBalance() < amount)
 	{
 		std::cout << "No enough money for the transfer";

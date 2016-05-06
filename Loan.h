@@ -16,7 +16,7 @@ private:
 
 public:
 	Loan(double AccountNum, double amount);	
-	Loan(double id, double AccountNum, double amount);	
+	Loan(double id, time_t date, double balance, double AccountNum, double amount);	
 	double getAmount();	
 	void modify();
 	
