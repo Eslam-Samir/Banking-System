@@ -58,15 +58,8 @@ void Transfer::printTransaction(std::ofstream &OutputFile)
     {
 		OutputFile<<"Transfer Date: "<<getFormatedDate()<<"\n";
 		OutputFile<<"Transfer to: "<<getOldBalanceTo()<<" total of "<<amount<<" $"<<"\n";
-		//std::ostringstream strs;
-		//strs << getOldBalance();
-		//std::string str = strs.str();
 		OutputFile << "Your old balance was: "<< getOldBalance()<<"\n";
-		//strs.str("");
-		//strs<<OldBalanceTo-amount;
-		OutputFile<<"Your current balace is: "<<getOldBalance()-amount;
-		//strs.str("");
-        OutputFile.close();
+		OutputFile<<"Your current balace is: "<<getOldBalance()-amount<<"\n";
     }
     
 }

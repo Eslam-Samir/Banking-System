@@ -37,6 +37,14 @@ void Withdraw:: modify()
 
 void Withdraw::printTransaction(std::ofstream &OutputFile)
 {
+	 if (OutputFile)
+    {
+		OutputFile<<"Withdraw Date: "<<getFormatedDate()<<"\n";
+		OutputFile<<"Withdraw amount of "<<amount<<" $"<<"\n";
+		OutputFile << "Your old balance was: "<< getOldBalance()<<"\n";
+		OutputFile<<"Your current balace is: "<<getOldBalance()-amount<<"\n";
+  
+    }
 }
 
 }

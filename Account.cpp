@@ -52,15 +52,17 @@ void Account::printMyTransactionHistory()
 {
 	TransactionManager *manager =TransactionManager::getTransactionManager();
 	std::ofstream myfile ("printall.txt");
-	std::vector<double>::iterator i;
+	std::vector<double>::reverse_iterator i;
 	Transaction * currentTrandaction=nullptr;
 		if (myfile.is_open())
 		{
-			for(i=transactions.end();i!=transactions.begin();i--)
+			for(i=transactions.rbegin();i!=transactions.rend();i--)
 			{
 				currentTrandaction=(*manager).searchTransaction(*i);
 				(*currentTrandaction).printTransaction(myfile);
+				myfile<<"\n"<<"***************************************************"<<"\n";
 			}	
 		}
+		myfile.close();
 }
 }

@@ -23,6 +23,11 @@ void CheckBalance::modify()
 
 void CheckBalance::printTransaction(std::ofstream &OutputFile)
 {
+	 if (OutputFile)
+    {
+		OutputFile<<"Balance checked on: "<<getFormatedDate()<<"\n";
+		OutputFile << "Your old balance was: "<< getOldBalance()<<"\n";
+    }
 }
 
 }

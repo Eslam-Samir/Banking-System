@@ -36,8 +36,7 @@ void Deposit::printTransaction(std::ofstream &OutputFile)
 		OutputFile<<"Deposit Date: "<<getFormatedDate()<<"\n";
 		OutputFile<<"Deposit amount of "<<amount<<" $"<<"\n";
 		OutputFile << "Your old balance was: "<< getOldBalance()<<"\n";
-		OutputFile<<"Your current balace is: "<<getOldBalance()+amount;
-        OutputFile.close();
+		OutputFile<<"Your current balace is: "<<getOldBalance()+amount<<"\n";
     }
 }
 
