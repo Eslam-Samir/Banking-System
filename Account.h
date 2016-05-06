@@ -4,6 +4,7 @@
 #include <list>
 #include <string>
 #include <vector>
+#include <sstream>
 #include "Client.h"
 
 namespace BankingSystem
