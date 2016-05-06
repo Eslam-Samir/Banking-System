@@ -39,11 +39,11 @@ public:
 	double getAccountNumber();	
 	double getOldBalance();
 	time_t getDate();
-	std::string getFormatedDate();
+	//std::string getFormatedDate();
 
 	// virtual functions for polymorphism
 	virtual void modify() = 0;
-	
+	virtual void printTransaction(std::ifstream &OutputFile);
 
 };
 

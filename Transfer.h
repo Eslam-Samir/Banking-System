@@ -1,7 +1,11 @@
 #ifndef __TRANSFER__
 #define __TRANSFER__
 
-#include <iostream>
+#include<iostream>
+#include<fstream>
+#include<string>
+
+#include<string>
 #include "Transaction.h"
 #include "AccountManager.h"
 #include "Account.h"
@@ -23,6 +27,7 @@ public:
 	double getTransferredTo();
 	double getOldBalanceTo();
 	void modify();
+	void printTransaction(std::ofstream &OutputFile);
 };
 
 }

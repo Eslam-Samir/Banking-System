@@ -290,7 +290,7 @@ void Tree::XmlParseNode(std::ifstream & inFile, std::stack<std::string> & s)
 
 	Client* owner;
 	bool clientExist = false;
-	Account* acc;
+	Account* acc=nullptr;
 	for(int i = 0, size = clientAccounts.size(); i < size; i++)
 	{
 		if((acc = search(clientAccounts[i])) != nullptr)

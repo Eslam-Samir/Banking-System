@@ -335,7 +335,7 @@ void TransactionManager::loadXml(std::ifstream & inFile)
 	std::string line;
 	double id, accountNum, amount, to, balance, balanceTo;
 	time_t date;
-	Transaction* transaction;
+	Transaction* transaction=nullptr;
 
 	if(!std::getline(inFile, line))
 		return;

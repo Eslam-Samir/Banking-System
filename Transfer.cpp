@@ -52,5 +52,21 @@ void Transfer::modify()
 	std::cout << "Your New Balance: $" << from->getBalance() << std::endl;
 	std::cout << "Transaction Number: " << getTransactionId() << std::endl;
 }
-
+void Transfer::printTransaction(std::ofstream &OutputFile)
+{
+	 if (OutputFile)
+    {
+	//	OutputFile<<ctime(Date);
+		std::ostringstream strs;
+		strs << OldBalanceTo;
+		//std::string str = strs.str();
+		OutputFile << "Your old balance was: "<<strs<<"\n";
+		strs.str("");
+		strs<<OldBalanceTo-amount;
+		OutputFile<<"Your current balace is: "<<strs;
+		strs.str("");
+        OutputFile.close();
+    }
+    
+}
 }
