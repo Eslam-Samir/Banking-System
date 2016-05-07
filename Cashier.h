@@ -1,15 +1,15 @@
-#ifndef __Cashier__
-#define __Cashier__
+#ifndef __CASHIER__
+#define __CASHIER__
 
 #include "Employee.h"
-#include "iostream"
+#include <iostream>
 
 namespace BankingSystem 
 {
 	class Cashier:public Employee
 	{
-	private:
 	public:
+		Cashier(int id, std::string name, std::string Username, std::string Password);
 		Permission AccessPermitions();
 		
 	
@@ -19,4 +19,4 @@ namespace BankingSystem
 	
 
 }
-#endif // __Cashier__
+#endif // __CASHIER__

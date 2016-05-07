@@ -34,6 +34,9 @@ double AccountManager::addAccount(double bal, std::string pass, Client* owner)
 	Account *tmp = new Account(accountNum, bal, pass, owner);
 	accounts->insert(tmp);
 	NumberOfAccounts++;
+
+	std::cout << "Added a new account with the number: " << accountNum << std::endl;
+
 	return accountNum;
 }
 void AccountManager::removeAccount(Account* user)
@@ -95,8 +98,8 @@ bool AccountManager::saveAccounts(std::string filename)
 	ss << getNumberOfAccounts(); // convert to string
 	outFile << "<NumberOfAccounts>" + ss.str() + "</NumberOfAccounts>\n";
 	ss.str(std::string()); // clear string stream
-	accounts->createXml(outFile);
-
+	accounts->createAccountsXml(outFile);
+	outFile.close();
 	return true;
 }
 
@@ -112,7 +115,8 @@ bool AccountManager::loadAccounts(std::string filename)
 	if(!inFile.is_open())
 		return false;
 
-	NumberOfAccounts = accounts->loadXml(inFile);
+	NumberOfAccounts = accounts->loadAccountsXml(inFile);
+	inFile.close();
 	return true;
 }
 }

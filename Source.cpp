@@ -1,16 +1,32 @@
 #include <iostream>
 #include "AccountManager.h"
 #include "TransactionManager.h"
+#include "EmployeeManager.h"
+
 using namespace std;
 using namespace BankingSystem;
 
 void main()
 {
-	 
-	//AccountManager * ptr = AccountManager::getAccountManager();
-	//TransactionManager * transManager = TransactionManager::getTransactionManager();
-	//ptr->loadAccounts("hello.xml");
-	//transManager->loadTransactions("trans.xml");
+	EmployeeManager* empManager = EmployeeManager::getEmployeeManager();
+	/*empManager->addEmployee("hoi", "asfsa", "asd", EmployeeType::cashier);
+	empManager->addEmployee("hoi", "asfsa", "waeqr", EmployeeType::cashier);
+	empManager->addEmployee("hoi", "rehtr", "asd", EmployeeType::clerk);
+	empManager->addEmployee("hoi", "qwrwqe", "asd", EmployeeType::manager);
+	empManager->addEmployee("hoi", "tyutiu", "asd", EmployeeType::manager);
+	empManager->removeEmployee("tyutiu", "asd");
+	empManager->saveEmployees("employees.xml");*/
+	/*
+	empManager->loadEmployees("employees.xml");
+	Employee* emp = empManager->EmployeeLogin("rehtr","asd");
+	if(emp != nullptr)
+		emp->AccessPermitions();*/
+	 /*
+	AccountManager * ptr = AccountManager::getAccountManager();
+	TransactionManager * transManager = TransactionManager::getTransactionManager();
+	ptr->loadAccounts("accounts.xml");
+	transManager->loadTransactions("trans.xml");
+	ptr->searchAccount(3156)->printMyTransactionHistory();
 	//cout << transManager->searchTransaction(2566)->getFormatedDate();
 	
 	

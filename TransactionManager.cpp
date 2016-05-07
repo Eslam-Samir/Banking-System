@@ -214,7 +214,8 @@ bool TransactionManager::saveTransactions(std::string filename)
 		return false;
 
 	outFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-	createXml(outFile);
+	createTransactionsXml(outFile);
+	outFile.close();
 	return true;
 }
 bool TransactionManager::loadTransactions(std::string filename)
@@ -229,16 +230,16 @@ bool TransactionManager::loadTransactions(std::string filename)
 	if(!inFile.is_open())
 		return false;
 
-	loadXml(inFile);
+	loadTransactionsXml(inFile);
+	inFile.close();
 	return true;
 }
 
-void TransactionManager::createXml(std::ofstream & outFile)
+void TransactionManager::createTransactionsXml(std::ofstream & outFile)
 {
 	std::map<double, Transaction*>::iterator it = history.begin();
 	while(it != history.end())
 	{
-		std::stringstream ss;
 		Transaction * transaction = it->second;
 		TransactionType type = transaction->getType();
 		switch(type)
@@ -259,38 +260,23 @@ void TransactionManager::createXml(std::ofstream & outFile)
 			outFile << "<Withdraw>\n";
 			break;
 		}
-
-		ss << transaction->getTransactionId(); // convert to string
-		outFile << "<TransactionID>" + ss.str() + "</TransactionID>\n";
-		ss.str(std::string()); // clear string stream
-
+		outFile << "<TransactionID>" << transaction->getTransactionId() << "</TransactionID>\n";
 		outFile << "<Date>" + std::to_string(transaction->getDate()) + "</Date>\n";
-
-		ss << transaction->getAccountNumber(); // convert to string
-		outFile << "<AccountNumber>" + ss.str() + "</AccountNumber>\n";
-		ss.str(std::string()); // clear string stream
-
-		ss << transaction->getOldBalance(); // convert to string
-		outFile << "<AccountOldBalance>" + ss.str() + "</AccountOldBalance>\n";
-		ss.str(std::string()); // clear string stream
-		
+		outFile << "<AccountNumber>" << transaction->getAccountNumber() << "</AccountNumber>\n";
+		outFile << "<AccountOldBalance>" << transaction->getOldBalance() << "</AccountOldBalance>\n";
 		switch(type)
 		{
 		case TransactionType::deposit:
 			{
 			Deposit* deposit = dynamic_cast<Deposit*>(transaction);
-			ss << deposit->getAmount(); // convert to string
-			outFile << "<Amount>" + ss.str() + "</Amount>\n";
-			ss.str(std::string()); // clear string stream
+			outFile << "<Amount>" << deposit->getAmount() << "</Amount>\n";
 			outFile << "</Deposit>\n";
 			}
 			break;
 		case TransactionType::loan:
 			{
 			Loan* loan = dynamic_cast<Loan*>(transaction);
-			ss << loan->getAmount(); // convert to string
-			outFile << "<Amount>" + ss.str() + "</Amount>\n";
-			ss.str(std::string()); // clear string stream
+			outFile << "<Amount>" << loan->getAmount() << "</Amount>\n";
 			outFile << "</Loan>\n";
 			}
 			break;
@@ -300,26 +286,16 @@ void TransactionManager::createXml(std::ofstream & outFile)
 		case TransactionType::transfer:
 			{
 			Transfer* transfer = dynamic_cast<Transfer*>(transaction);
-			ss << transfer->getAmount(); // convert to string
-			outFile << "<Amount>" + ss.str() + "</Amount>\n";
-			ss.str(std::string()); // clear string stream
-
-			ss << transfer->getTransferredTo(); // convert to string
-			outFile << "<TransferredTo>" + ss.str() + "</TransferredTo>\n";
-			ss.str(std::string()); // clear string stream
-
-			ss << transaction->getOldBalance(); // convert to string
-			outFile << "<AccountOldBalanceTo>" + ss.str() + "</AccountOldBalanceTo>\n";
-			ss.str(std::string()); // clear string stream
+			outFile << "<Amount>" << transfer->getAmount() << "</Amount>\n";
+			outFile << "<TransferredTo>" << transfer->getTransferredTo() << "</TransferredTo>\n";
+			outFile << "<AccountOldBalanceTo>" << transaction->getOldBalance() << "</AccountOldBalanceTo>\n";
 			outFile << "</Transfer>\n";
 			}
 			break;
 		case TransactionType::withdraw:
 			{
 			Withdraw* withdraw = dynamic_cast<Withdraw*>(transaction);
-			ss << withdraw->getAmount(); // convert to string
-			outFile << "<Amount>" + ss.str() + "</Amount>\n";
-			ss.str(std::string()); // clear string stream
+			outFile << "<Amount>" << withdraw->getAmount() << "</Amount>\n";
 			outFile << "</Withdraw>\n";
 			}
 			break;
@@ -329,7 +305,7 @@ void TransactionManager::createXml(std::ofstream & outFile)
 }
 
 
-void TransactionManager::loadXml(std::ifstream & inFile)
+void TransactionManager::loadTransactionsXml(std::ifstream & inFile)
 {
 	std::stack<std::string> s;
 	std::string line;
@@ -403,7 +379,14 @@ void TransactionManager::loadXml(std::ifstream & inFile)
 		history[id] = transaction;
 		if(!std::getline(inFile, line))
 			return;
-		s.pop(); // pop transaction tag
+
+		if(line.size() > 2 && line.substr(2) == s.top().substr(1))
+			s.pop(); // pop transaction tag
+		else
+		{
+			std::cout << "Error loading file" << std::endl;
+			return;
+		}
 	}
 }
 
@@ -411,11 +394,11 @@ std::string TransactionManager::XmlParseTag(std::string & line, std::string TagN
 {
 	std::string temp;
 	s.push(TagName);
-	line = line.substr(TagName.length(), line.length()-TagName.length()); //Ex.	number</AccountNumber>
+	line = line.substr(TagName.length(), line.length()-TagName.length());
 	temp = line.substr(0, line.find("</"));
 	line = line.substr(temp.length(), line.length()-temp.length());
 
-	if(line.substr(2) != s.top().substr(1))
+	if(line.size() < 2 || line.substr(2) != s.top().substr(1))
 		return "";
 
 	s.pop();

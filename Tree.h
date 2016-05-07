@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <stack>
-#include <sstream>
 #include <fstream>
 
 #include "TreeNode.h"
@@ -30,8 +29,8 @@ public:
 	bool insert(Account* x);
 	TreeNode* remove(Account* x);
 
-	void createXml(std::ofstream & outFile);
-	double loadXml(std::ifstream & inFile);
+	void createAccountsXml(std::ofstream & outFile);
+	double loadAccountsXml(std::ifstream & inFile);
 };
 
 }

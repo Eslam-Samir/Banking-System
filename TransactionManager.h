@@ -13,7 +13,6 @@
 #include "CheckBalance.h"
 #include "Transfer.h"
 #include <map>
-#include <utility>
 #include <fstream>
 
 namespace BankingSystem
@@ -23,8 +22,8 @@ class TransactionManager
 {
 private:
 	TransactionManager();
-	void createXml(std::ofstream & outFile);
-	void loadXml(std::ifstream & inFile);
+	void createTransactionsXml(std::ofstream & outFile);
+	void loadTransactionsXml(std::ifstream & inFile);
 	std::string XmlParseTag(std::string & line, std::string TagName, std::stack<std::string> & s);
 
 	std::queue<Client*> withdraw;
