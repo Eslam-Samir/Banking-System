@@ -21,14 +21,15 @@ void main()
 	Employee* emp = empManager->EmployeeLogin("rehtr","asd");
 	if(emp != nullptr)
 		emp->AccessPermitions();*/
-	 /*
+	
 	AccountManager * ptr = AccountManager::getAccountManager();
 	TransactionManager * transManager = TransactionManager::getTransactionManager();
-	ptr->loadAccounts("accounts.xml");
+	/*ptr->loadAccounts("accounts.xml");
 	transManager->loadTransactions("trans.xml");
-	ptr->searchAccount(3156)->printMyTransactionHistory();
+	transManager->printTransactionsReport("myreport.txt");
+	//ptr->searchAccount(3156)->printMyTransactionHistory();
 	//cout << transManager->searchTransaction(2566)->getFormatedDate();
-	
+	*/
 	
 	/*ptr->loadAccounts("hello.xml");
 	Client* eslam = new Client(1, "Eslam Samir", "fsdags", "08/10/1994");

@@ -47,6 +47,7 @@ public:
 	Transaction* searchTransaction(double transactionID);
 	bool saveTransactions(std::string filename);
 	bool loadTransactions(std::string filename);
+	void printTransactionsReport(std::string filename);
 
 };
 

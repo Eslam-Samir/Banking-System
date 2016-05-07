@@ -405,4 +405,21 @@ std::string TransactionManager::XmlParseTag(std::string & line, std::string TagN
 	return temp;
 }
 
+void TransactionManager::printTransactionsReport(std::string filename)
+{
+	std::ofstream myfile(filename);
+	std::map<double, Transaction*>::reverse_iterator i;
+	Transaction * currentTransaction = nullptr;
+	if (myfile.is_open())
+	{
+		for(i = history.rbegin(); i != history.rend(); i++)
+		{
+			myfile << "Account Number: " << i->second->getAccountNumber() << std::endl;
+			i->second->printTransaction(myfile);
+			myfile<<"\n"<<"***************************************************"<<"\n";
+		}	
+	}
+	myfile.close();
+}
+
 }
