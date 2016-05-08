@@ -39,7 +39,7 @@ void Transfer::modify()
 
 	if (from->getBalance() < amount)
 	{
-		std::cout << "No enough money for the transfer";
+		std::cout << "No enough money for the transfer" << std::endl;
 		return;
 	}
 	//transfer
@@ -57,7 +57,7 @@ void Transfer::printTransaction(std::ofstream &OutputFile)
 	if (OutputFile)
     {
 		OutputFile<<"Transfer Date: "<<getFormatedDate()<<"\n";
-		OutputFile<<"Transfer to: "<<getOldBalanceTo()<<" total of "<<amount<<" $"<<"\n";
+		OutputFile<<"Transfer to: "<<TransferredTo<<" total of "<<amount<<" $"<<"\n";
 		OutputFile << "Your old balance was: "<< getOldBalance()<<"\n";
 		OutputFile<<"Your current balace is: "<<getOldBalance()-amount<<"\n";
     }

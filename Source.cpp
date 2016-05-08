@@ -89,6 +89,7 @@ void main()
 		case addAccount:
 			{
 				double num, balance, clientID;
+				bool flag = true;
 				int oldClient;
 				string password, newpass, name, dateOfBirth, address;
 				Account* account;
@@ -110,7 +111,10 @@ void main()
 							client = account->getOwner();
 						}
 						else
+						{
+							flag = false;
 							cout << "\nWrong account number or password ";
+						}
 					}
 					else if(oldClient == 2)
 					{
@@ -125,14 +129,16 @@ void main()
 						client = new Client(clientID, name, address, dateOfBirth);
 					}
 				} while(oldClient < 1 || oldClient > 2);
-				//account = accountManager->searchAccount(num);
-				cout << "\nEnter the new account information: ";
-				cout << "\nThe new account base balance: ";
-				cin >> balance;
-				cout << "\nThe new account password: ";
-				cin >> password;
-				if(client != nullptr)
-					accountManager->addAccount(balance, newpass, client);
+				if(flag)
+				{	
+					cout << "\nEnter the new account information: ";
+					cout << "\nThe new account base balance: ";
+					cin >> balance;
+					cout << "\nThe new account password: ";
+					cin >> newpass;
+					if(client != nullptr)
+						accountManager->addAccount(balance, newpass, client);
+				}
 				cout << endl;
 			}
 			break;
@@ -149,6 +155,7 @@ void main()
 				{
 					account = accountManager->searchAccount(num);
 					accountManager->removeAccount(account);
+					cout <<"\nAccount Removed"<<endl;
 				}
 				else
 					cout << "\nWrong account number or password ";

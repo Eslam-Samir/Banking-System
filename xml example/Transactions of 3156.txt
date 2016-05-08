@@ -1,0 +1,52 @@
+Transfer Date: Sun May 08 18:16:20 2016
+
+Transfer to: 7747 total of 10000 $
+Your old balance was: 246223
+Your current balace is: 236223
+
+***************************************************
+Deposit Date: Sun May 08 18:03:23 2016
+
+Deposit amount of 5000 $
+Your old balance was: 241223
+Your current balace is: 246223
+
+***************************************************
+Withdraw Date: Sun May 08 18:00:27 2016
+
+Withdraw amount of 88888 $
+Your old balance was: 330111
+Your current balace is: 241223
+
+***************************************************
+Balance checked on: Fri May 06 14:53:37 2016
+
+Your old balance was: 330111
+
+***************************************************
+Transfer Date: Fri May 06 14:53:17 2016
+
+Transfer to: 6635 total of 10000 $
+Your old balance was: 340111
+Your current balace is: 330111
+
+***************************************************
+Loan Date: Fri May 06 14:52:50 2016
+
+Loaned amount of 100000 $
+
+***************************************************
+Withdraw Date: Fri May 06 14:52:29 2016
+
+Withdraw amount of 532 $
+Your old balance was: 240643
+Your current balace is: 240111
+
+***************************************************
+Deposit Date: Fri May 06 14:52:00 2016
+
+Deposit amount of 40643 $
+Your old balance was: 200000
+Your current balace is: 240643
+
+***************************************************

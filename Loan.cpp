@@ -36,7 +36,7 @@ void Loan::modify()
 		std::cout << "Transaction Number: " << getTransactionId() << std::endl;
 	}
 	else
-		std::cout << "Loan request was refused";
+		std::cout << "Loan request was refused" << std::endl;
 }
 
 void Loan::printTransaction(std::ofstream &OutputFile)

@@ -24,10 +24,10 @@ Permission Clerk::AccessPermitions()
 		else if (a==3) return getAccountTransactions;
 		else if (a==4) return loadAccounts;
 		else if (a==5) return loadTransactions;
-		else if (a==6) return saveTransactions;
+		else if (a==6) return saveAccounts;
 		else if (a==7) return logout;
 	} while(a < 1 || a > 7);
-	return saveAccounts;
+	return logout;
 }
 
 }

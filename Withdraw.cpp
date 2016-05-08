@@ -24,7 +24,7 @@ void Withdraw:: modify()
 
 	if (account->getBalance() < amount)
 	{
-		std::cout << "No enough money for the withdraw";
+		std::cout << "No enough money for the withdraw" << std::endl;
 		return;
 	}
 	account->setBalance(account->getBalance() - amount);

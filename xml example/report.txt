@@ -1,0 +1,102 @@
+Account Number: 8833
+Withdraw Date: Sun May 08 18:00:12 2016
+
+Withdraw amount of 300 $
+Your old balance was: 4000
+Your current balace is: 3700
+
+***************************************************
+Account Number: 3156
+Balance checked on: Fri May 06 14:53:37 2016
+
+Your old balance was: 330111
+
+***************************************************
+Account Number: 3156
+Transfer Date: Sun May 08 18:16:20 2016
+
+Transfer to: 7747 total of 10000 $
+Your old balance was: 246223
+Your current balace is: 236223
+
+***************************************************
+Account Number: 7747
+Transfer Date: Sun May 08 18:11:49 2016
+
+Transfer to: 8833 total of 3000 $
+Your old balance was: 223
+Your current balace is: -2777
+
+***************************************************
+Account Number: 7747
+Balance checked on: Sun May 08 18:06:43 2016
+
+Your old balance was: 223
+
+***************************************************
+Account Number: 8833
+Transfer Date: Sun May 08 18:15:58 2016
+
+Transfer to: 7747 total of 1000 $
+Your old balance was: 13700
+Your current balace is: 12700
+
+***************************************************
+Account Number: 3156
+Loan Date: Fri May 06 14:52:50 2016
+
+Loaned amount of 100000 $
+
+***************************************************
+Account Number: 442
+Loan Date: Sun May 08 18:08:34 2016
+
+Loaned amount of 12000 $
+
+***************************************************
+Account Number: 3156
+Withdraw Date: Sun May 08 18:00:27 2016
+
+Withdraw amount of 88888 $
+Your old balance was: 330111
+Your current balace is: 241223
+
+***************************************************
+Account Number: 3156
+Transfer Date: Fri May 06 14:53:17 2016
+
+Transfer to: 6635 total of 10000 $
+Your old balance was: 340111
+Your current balace is: 330111
+
+***************************************************
+Account Number: 3156
+Withdraw Date: Fri May 06 14:52:29 2016
+
+Withdraw amount of 532 $
+Your old balance was: 240643
+Your current balace is: 240111
+
+***************************************************
+Account Number: 3156
+Deposit Date: Sun May 08 18:03:23 2016
+
+Deposit amount of 5000 $
+Your old balance was: 241223
+Your current balace is: 246223
+
+***************************************************
+Account Number: 8833
+Loan Date: Sun May 08 18:08:04 2016
+
+Loaned amount of 10000 $
+
+***************************************************
+Account Number: 3156
+Deposit Date: Fri May 06 14:52:00 2016
+
+Deposit amount of 40643 $
+Your old balance was: 200000
+Your current balace is: 240643
+
+***************************************************
