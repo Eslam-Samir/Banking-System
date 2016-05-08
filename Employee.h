@@ -11,22 +11,29 @@ namespace BankingSystem
 	};
 	enum Permission 
 	{
-		addAccount = 0,
+		addEmployee = 0,
+		removeEmployee,
+		getTransactionReport,
+		loadEmployees,
+		saveEmployees,
+		addAccount,
 		removeAccount,
-		allowWithdraw,
-		allowDeposit,
-		allowCheck,
-		allowLoan,
-		allowTransfer,
+		getAccountTransactions,
+		loadAccounts,
+		saveAccounts,
+		addWithdraw,
+		addDeposit,
+		addCheck,
+		addLoan,
+		addTransfer,
 		startWithdraw,
 		startDeposit,
 		startCheck,
 		startLoan,
 		startTransfer,
-		getAccountTransactions,
-		addEmployee,
-		removeEmployee,
-		getTransactionReport
+		loadTransactions,
+		saveTransactions,
+		logout
 	};
 class Employee
 {

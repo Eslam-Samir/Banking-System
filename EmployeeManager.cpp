@@ -81,8 +81,13 @@ bool EmployeeManager::removeEmployee(std::string Username, std::string password)
 	}
 	else
 	{
+		if(password != it->second->getPassword())
+			return false;
+
+		EmployeesCount--;
+		int id = it->second->getID();
 		employees.erase(it);
-		std::cout<< "Removed the employee with the id: " << EmployeesCount-- << std::endl;
+		std::cout<< "Removed the employee with the id: " << id << std::endl;
 		return true;
 	}
 	return false;

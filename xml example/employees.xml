@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NumberOfEmployees>3</NumberOfEmployees>
+<NextID>4</NextID>
+<Clerk>
+<EmployeeID>1</EmployeeID>
+<Name></Name>
+<Username>ahmed</Username>
+<Password>pass2</Password>
+</Clerk>
+<Manager>
+<EmployeeID>2</EmployeeID>
+<Name></Name>
+<Username>khaled</Username>
+<Password>pass3</Password>
+</Manager>
+<Cashier>
+<EmployeeID>0</EmployeeID>
+<Name></Name>
+<Username>mohamed</Username>
+<Password>pass1</Password>
+</Cashier>

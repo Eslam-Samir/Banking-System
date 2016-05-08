@@ -1,10 +1,6 @@
 #include "Client.h"
 namespace BankingSystem
 {
-
-Client::Client()
-{}
-
 Client::Client(double id, std::string n,std::string a,std::string d)
 {
 	clientID=id;

@@ -17,7 +17,6 @@ private:
 	std::vector<double> myAccounts;
 
 public:
-	Client();
 	Client(double id, std::string n,std::string a,std::string d);
 	void setClientID(double id);
 	void setName(std::string n);

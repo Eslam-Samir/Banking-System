@@ -12,8 +12,6 @@
 <ClientAccounts>
 <ClientAccount>3156</ClientAccount>
 <ClientAccount>6635</ClientAccount>
-<ClientAccount>3156</ClientAccount>
-<ClientAccount>6635</ClientAccount>
 </ClientAccounts>
 </Client>
 <TransactionsCount>5</TransactionsCount>
@@ -35,7 +33,6 @@
 <DateOfBirth>373635</DateOfBirth>
 <ClientAccounts>
 <ClientAccount>442</ClientAccount>
-<ClientAccount>442</ClientAccount>
 </ClientAccounts>
 </Client>
 <TransactionsCount>0</TransactionsCount>
@@ -51,7 +48,6 @@
 <DateOfBirth>25553532</DateOfBirth>
 <ClientAccounts>
 <ClientAccount>7747</ClientAccount>
-<ClientAccount>7747</ClientAccount>
 </ClientAccounts>
 </Client>
 <TransactionsCount>0</TransactionsCount>
@@ -65,8 +61,6 @@
 <Address>fsdags</Address>
 <DateOfBirth>08/10/1994</DateOfBirth>
 <ClientAccounts>
-<ClientAccount>3156</ClientAccount>
-<ClientAccount>6635</ClientAccount>
 <ClientAccount>3156</ClientAccount>
 <ClientAccount>6635</ClientAccount>
 </ClientAccounts>
