@@ -288,7 +288,7 @@ void main()
 		case loadTransactions:
 			{
 			string filename;
-			cout << "\nPlease enter the accounts file name: ";
+			cout << "\nPlease enter the transactions file name: ";
 			cin >> filename;
 			transactionManager->loadTransactions(filename + ".xml");
 			}
@@ -296,7 +296,7 @@ void main()
 		case loadEmployees:
 			{
 			string filename;
-			cout << "\nPlease enter the accounts file name: ";
+			cout << "\nPlease enter the employees file name: ";
 			cin >> filename;
 			employeeManager->loadEmployees(filename + ".xml");
 			}

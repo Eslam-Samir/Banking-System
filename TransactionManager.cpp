@@ -38,8 +38,11 @@ void TransactionManager::serveWithdrawRequests()
 		if(ptr->validateAccount(num, pass))
 		{
 			double amount;
-			std::cout << "Please enter the amount you want to withdraw: ";
-			std::cin >> amount;
+			do
+			{
+				std::cout << "Please enter the amount you want to withdraw: ";
+				std::cin >> amount;
+			}while(amount <= 0);
 			Transaction *transaction = new Withdraw(num, amount);
 			transaction->modify();
 			history[transaction->getTransactionId()] = transaction;
@@ -67,8 +70,11 @@ void TransactionManager::serveDepositRequests()
 		if(ptr->validateAccount(num, pass))
 		{
 			double amount;
-			std::cout << "Enter the amount you want to deposit: ";
-			std::cin >> amount;
+			do
+			{
+				std::cout << "Enter the amount you want to deposit: ";
+				std::cin >> amount;
+			}while(amount <= 0);
 			Transaction *transaction = new Deposit(num, amount);
 			transaction->modify();
 			history[transaction->getTransactionId()] = transaction;
@@ -101,8 +107,11 @@ void TransactionManager::serveTransferRequests()
 			if(ptr->searchAccount(to) != nullptr)
 			{
 				double amount;
-				std::cout << "Enter the amount you want to transfer: ";
-				std::cin >> amount;
+				do
+				{
+					std::cout << "Enter the amount you want to transfer: ";
+					std::cin >> amount;
+				}while(amount <= 0);
 				Transaction *transaction = new Transfer(from, amount, to);
 				transaction->modify();
 				history[transaction->getTransactionId()] = transaction;
@@ -153,8 +162,11 @@ void TransactionManager::serveLoanRequests()
 		if(ptr->validateAccount(num, pass))
 		{
 			double amount;
-			std::cout << "Enter the amount requested: ";
-			std::cin >> amount;
+			do
+			{
+				std::cout << "Enter the amount requested: ";
+				std::cin >> amount;
+			}while(amount <= 0);
 			Transaction *transaction = new Loan(num, amount);
 			transaction->modify();
 
