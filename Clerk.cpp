@@ -27,7 +27,7 @@ Permission Clerk::AccessPermitions()
 		else if (a==6) return saveTransactions;
 		else if (a==7) return logout;
 	} while(a < 1 || a > 7);
-	return logout;
+	return saveAccounts;
 }
 
 }

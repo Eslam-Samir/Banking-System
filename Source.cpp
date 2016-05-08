@@ -92,7 +92,7 @@ void main()
 				int oldClient;
 				string password, newpass, name, dateOfBirth, address;
 				Account* account;
-				Client* client;
+				Client* client=nullptr;
 				do
 				{
 					cout << "\nDo you already have an account (1. yes 2. no)";
@@ -124,8 +124,8 @@ void main()
 						cin >> dateOfBirth;
 						client = new Client(clientID, name, address, dateOfBirth);
 					}
-				} while(oldClient != 1 || oldClient != 2);
-				account = accountManager->searchAccount(num);
+				} while(oldClient < 1 || oldClient > 2);
+				//account = accountManager->searchAccount(num);
 				cout << "\nEnter the new account information: ";
 				cout << "\nThe new account base balance: ";
 				cin >> balance;
@@ -305,7 +305,7 @@ void main()
 		case saveTransactions:
 			{
 			string filename;
-			cout << "\nPlease enter the accounts file name: ";
+			cout << "\nPlease enter the transactions file name: ";
 			cin >> filename;
 			transactionManager->saveTransactions(filename + ".xml");
 			}
@@ -313,7 +313,7 @@ void main()
 		case saveEmployees:
 			{
 			string filename;
-			cout << "\nPlease enter the accounts file name: ";
+			cout << "\nPlease enter the employees file name: ";
 			cin >> filename;
 			employeeManager->saveEmployees(filename + ".xml");
 			}
